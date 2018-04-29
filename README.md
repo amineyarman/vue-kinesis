@@ -1,5 +1,5 @@
 # vuejs-mouse-parallax
-Is a compontent for fast 60fps parallax scroll effects in vue 2.
+A Mouse Parallax Effect in Vue.js
 
 ## Demo
 
