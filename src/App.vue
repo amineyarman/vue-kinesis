@@ -1,28 +1,41 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+  <div ref="parallaxSection" id="app" @mousemove="getMousePosition">
+    <h1 data-hp="10">Hello</h1>
+    <h1>Bonjour</h1>
+    <parallaxElement :parallaxStrength="40" :mousePX='mouseXC'>
+      YAY
+    </parallaxElement>
+    <parallaxElement :parallaxStrength="-40" :mousePX='mouseXC'>
+      hello
+    </parallaxElement>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import parallaxElement from "./components/parallax-element.vue";
 
 export default {
-  name: 'App',
+  data() {
+    return {
+      mouseX: 0
+    }
+  },
+  computed: {
+    mouseXC() {
+      return this.mouseX
+    }
+  },
+  methods: {
+    getMousePosition(e) {
+      this.mouseX = e.pageX
+    }
+  },
   components: {
-    HelloWorld
+    parallaxElement
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss" scoped>
 </style>
+
