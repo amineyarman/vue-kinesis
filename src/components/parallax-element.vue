@@ -43,7 +43,7 @@ export default {
 
 <style lang="scss" scoped>
     .parallax-element {
-      transition: all 0.6s;
+      transition: all 2s;
       transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
     }
 </style>

@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import parallaxElement from "./components/parallax-element.vue";
+import parallaxElement from "./components/parallax-element.vue"
+import _ from 'lodash'
 
 export default {
   data() {
@@ -31,10 +32,11 @@ export default {
     }
   },
   methods: {
-    getMousePosition(e) {
+     getMousePosition: _.throttle(function(e) {
       this.mouseX = e.pageX
       this.mouseY = e.pageY
-    }
+      console.log("yoyoyo")
+    }, 100)
   },
   components: {
     parallaxElement
@@ -53,6 +55,7 @@ export default {
     .horizontal-card {
       display: flex;
       width: 70vw;
+      max-width: 992px;
       height: 70vh;
       margin: auto;
 
@@ -77,7 +80,7 @@ export default {
       }
 
       .background-image {
-        background-image: url(https://images.unsplash.com/photo-1504870712357-65ea720d6078?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d91ffea4f802668c524df165caf52704&auto=format&fit=crop&w=2500&q=80);
+        background-image: url(https://orig00.deviantart.net/6fde/f/2014/270/4/d/____by_aminerman-d80qw6m.jpg);
         background-position: center;
         background-size: cover;
         width: 100%;
