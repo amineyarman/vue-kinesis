@@ -36,6 +36,70 @@
         <parallaxElement
         class="background-image"
         :isHover="props.isHover"
+        :parallaxStrength="50"
+        :type="'rotation'"
+        >
+        </parallaxElement>
+      </template>
+    </parallax-container>
+
+    <parallax-container class="horizontal-card">
+      <template slot-scope="props">
+        <parallaxElement
+        class="text-container"
+        :isHover="props.isHover"
+        :parallaxStrength="15"
+        :type="'rotation'"
+        >
+          <h1>MouseParallax</h1>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, omnis atque. Dolore rerum, doloremque nulla animi neque repellat ad voluptatem cumque cum laudantium aut illo illum placeat nihil inventore ipsa.</p>
+        </parallaxElement>
+
+        <parallaxElement
+        class="background-image"
+        :isHover="props.isHover"
+        :parallaxStrength="15"
+        :type="'rotation'"
+        >
+        </parallaxElement>
+      </template>
+    </parallax-container>
+    <parallax-container class="horizontal-card">
+      <template slot-scope="props">
+        <parallaxElement
+        class="text-container"
+        :isHover="props.isHover"
+        :parallaxStrength="15"
+        :type="'rotation'"
+        >
+          <h1>MouseParallax</h1>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, omnis atque. Dolore rerum, doloremque nulla animi neque repellat ad voluptatem cumque cum laudantium aut illo illum placeat nihil inventore ipsa.</p>
+        </parallaxElement>
+
+        <parallaxElement
+        class="background-image"
+        :isHover="props.isHover"
+        :parallaxStrength="15"
+        :type="'rotation'"
+        >
+        </parallaxElement>
+      </template>
+    </parallax-container>
+    <parallax-container class="horizontal-card">
+      <template slot-scope="props">
+        <parallaxElement
+        class="text-container"
+        :isHover="props.isHover"
+        :parallaxStrength="15"
+        :type="'rotation'"
+        >
+          <h1>MouseParallax</h1>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, omnis atque. Dolore rerum, doloremque nulla animi neque repellat ad voluptatem cumque cum laudantium aut illo illum placeat nihil inventore ipsa.</p>
+        </parallaxElement>
+
+        <parallaxElement
+        class="background-image"
+        :isHover="props.isHover"
         :parallaxStrength="15"
         :type="'rotation'"
         >

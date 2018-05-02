@@ -13,6 +13,7 @@ export default {
     this.height = this.$refs.parallaxSection.offsetHeight;
     this.offsetX = parseInt(this.$refs.parallaxSection.offsetLeft);
     this.offsetY = parseInt(this.$refs.parallaxSection.offsetTop);
+    console.log(this.offsetY)
   },
   data() {
     return {
@@ -28,21 +29,30 @@ export default {
   },
   computed: {
       transformParallax(){
+          if(this.isHover === false) {
+              return
+          }
+
+          else if(this.type === 'translation') {
+
           let relX = this.mouseX - this.offsetX
           let relY = this.mouseY - this.offsetY
           this.movementX = (relX - this.width/2) / this.width * this.parallaxStrength
           this.movementY = (relY - this.height/2) / this.height * this.parallaxStrength
-          if(this.isHover === false) {
-              return
-          }
-          else if(this.type === 'translation') {
             return {
                 transform: `translateX(${this.movementX}px) translateY(${this.movementY}px)`
             }
           }
+
+          
           else if(this.type === 'rotation') {
+let relX = this.mouseX - this.$refs.parallaxSection.offsetLeft - this.width/2
+     let relY = (this.mouseY - (this.$refs.parallaxSection.getBoundingClientRect().top + document.documentElement.scrollTop)
+ - this.height/2) / this.height;
+          this.movementX = (relX - this.width/2) / this.width * this.parallaxStrength
+          this.movementY = relY * this.parallaxStrength
             return {
-                transform: `rotateX(${this.movementY/100}rad) rotateY(${this.movementX/100}rad)`
+                transform: `rotateX(${this.movementY}deg) rotateY(${this.movementX}deg)`
             }
           }
       }
