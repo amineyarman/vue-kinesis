@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    props: ['parallaxStrength', 'mousePX', 'mousePY'],
+    props: ['parallaxStrength', 'mousePX', 'mousePY', 'parallaxType'],
     mounted(){
     this.width = this.$refs.parallaxSection.offsetWidth;
     this.height = this.$refs.parallaxSection.offsetHeight;
@@ -21,8 +21,7 @@ export default {
       mouseY: 0,
       offsetX: 0,
       offsetY: 0,
-      movementX: 0,
-      movementY: 0
+      movementX: 0
     }
   },
   computed: {
@@ -33,8 +32,17 @@ export default {
           let relY = this.mouseY - this.offsetY
           this.movementX = (relX - this.width/2) / this.width * this.parallaxStrength
           this.movementY = (relY - this.height/2) / this.height * this.parallaxStrength
-          return {
-              transform: `translateX(${this.movementX}px) translateY(${this.movementY}px)`
+          
+          if (this.parallaxType === 'translation') {
+            return {
+                transform: `translateX(${this.movementX}px) translateY(${this.movementY}px)`
+            }
+          }
+          
+          if (this.parallaxType === 'rotation') {
+            return {
+                transform: `rotateX(${this.movementX}deg) rotateY(${this.movementY}deg)`
+            }
           }
       }
   },
