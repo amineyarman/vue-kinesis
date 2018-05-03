@@ -6,15 +6,17 @@
 
 <script>
 import { eventBus } from "../main";
+
 export default {
   props: ["parallaxStrength", "isHover", "type"],
+
   mounted() {
     this.width = this.$refs.parallaxSection.offsetWidth;
     this.height = this.$refs.parallaxSection.offsetHeight;
     this.offsetX = parseInt(this.$refs.parallaxSection.offsetLeft);
     this.offsetY = parseInt(this.$refs.parallaxSection.offsetTop);
-    console.log(this.offsetY);
   },
+
   data() {
     return {
       width: 0,
@@ -27,6 +29,7 @@ export default {
       movementY: 0
     };
   },
+
   computed: {
     transformParallax() {
       if (this.isHover === false) {
@@ -75,7 +78,7 @@ export default {
           this.height *
           Math.abs(this.parallaxStrength);
         return {
-          transform: `rotateX(${this.movementY}deg) rotateY(${
+          transform: `rotateX(${-this.movementY}deg) rotateY(${
             this.movementX
           }deg) translateZ(${this.parallaxStrength * 2}px) `
         };

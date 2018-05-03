@@ -7,7 +7,8 @@
 <script>
 import parallaxElement from "./parallax-element.vue";
 import { eventBus } from "../main.js";
-import _ from "lodash";
+import throttle from "../js/throttle";
+
 export default {
   data() {
     return {
@@ -16,8 +17,9 @@ export default {
       hovering: false
     };
   },
+
   methods: {
-    getMousePosition: _.throttle(function(e) {
+    getMousePosition: throttle(function(e) {
       this.mouseX = e.pageX;
       this.mouseY = e.pageY;
       if (this.hovering === false) {
@@ -30,13 +32,16 @@ export default {
         });
       }
     }, 100),
-    parallaxStart: function() {
+
+    parallaxStart() {
       this.hovering = true;
     },
-    parallaxStop: function() {
+
+    parallaxStop() {
       this.hovering = false;
     }
   },
+
   components: {
     parallaxElement
   }

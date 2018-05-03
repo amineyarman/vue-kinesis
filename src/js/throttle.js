@@ -6,7 +6,6 @@ export default function throttle(callback, delay) {
             var now = +new Date();
             var args = arguments;
             if (last && now < last + delay) {
-                // le délai n'est pas écoulé on reset le timer
                 clearTimeout(timer);
                 timer = setTimeout(function () {
                     last = now;
