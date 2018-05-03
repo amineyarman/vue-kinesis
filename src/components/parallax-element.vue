@@ -15,6 +15,7 @@ export default {
     this.height = this.$refs.parallaxSection.offsetHeight;
     this.offsetX = parseInt(this.$refs.parallaxSection.offsetLeft);
     this.offsetY = parseInt(this.$refs.parallaxSection.offsetTop);
+    this.$emit('parallaxStrengthValue', this.parallaxStrength);
   },
 
   data() {
@@ -32,7 +33,7 @@ export default {
 
   computed: {
     transformParallax() {
-      if (this.isHover === false) {
+      if (this.parallaxStrength === 0) {
         return;
       } else if (this.type === "translation") {
         let relX = this.mouseX - this.offsetX;

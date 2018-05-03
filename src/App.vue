@@ -27,7 +27,6 @@
 			<template slot-scope="props">
 				<parallax-element
 					class="text-container"
-					:isHover="props.isHover"
 					:parallaxStrength="-5"
 					:type="'translation'"
 					>
@@ -35,7 +34,6 @@
 				</parallax-element>
 				<parallax-element
 					class="background-image"
-					:isHover="props.isHover"
 					:parallaxStrength="-10"
 					:type="'translation'"
 					>
@@ -60,7 +58,6 @@
 			<template slot-scope="props">
 				<parallax-element
 					class="text-container"
-					:isHover="props.isHover"
 					:parallaxStrength="15"
 					:type="'rotation'"
 					>
@@ -68,7 +65,6 @@
 				</parallax-element>
 				<parallax-element
 					class="background-image"
-					:isHover="props.isHover"
 					:parallaxStrength="10"
 					:type="'rotation'"
 					>
@@ -93,7 +89,6 @@
 			<template slot-scope="props">
 				<parallax-element
 					class="text-container"
-					:isHover="props.isHover"
 					:parallaxStrength="10"
 					:type="'depth'"
 					>

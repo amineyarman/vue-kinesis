@@ -1,6 +1,6 @@
 <template>
  <div class="parallax-container" @mousemove="getMousePosition" @mouseout="parallaxStop" @mouseover="parallaxStart">
-     <slot :isHover="hovering"></slot>
+     <slot></slot>
     </div>
 </template>
 
@@ -20,6 +20,7 @@ export default {
 
   methods: {
     getMousePosition: throttle(function(e) {
+    
       this.mouseX = e.pageX;
       this.mouseY = e.pageY;
       if (this.hovering === false) {
@@ -41,6 +42,11 @@ export default {
       this.hovering = false;
     }
   },
+    mounted(){
+         if(this.$children[0].$options.propsData.parallaxStrength != 0) {
+             this.hovering = true
+         }
+    },
 
   components: {
     parallaxElement
