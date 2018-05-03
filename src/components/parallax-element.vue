@@ -14,7 +14,8 @@ export default {
     this.width = this.$refs.parallaxSection.offsetWidth;
     this.height = this.$refs.parallaxSection.offsetHeight;
     this.offsetX = parseInt(this.$refs.parallaxSection.offsetLeft);
-    this.offsetY = parseInt(this.$refs.parallaxSection.offsetTop);
+    this.offsetY = parseInt(this.$refs.parallaxSection.getBoundingClientRect().top + document.documentElement.scrollTop);
+    this.$emit('parallaxStrengthValue', this.parallaxStrength);
   },
 
   data() {
@@ -26,13 +27,14 @@ export default {
       offsetX: 0,
       offsetY: 0,
       movementX: 0,
-      movementY: 0
+      movementY: 0,
+      isHovering: false
     };
   },
 
   computed: {
     transformParallax() {
-      if (this.isHover === false) {
+      if (this.isHovering === false) {
         return;
       } else if (this.type === "translation") {
         let relX = this.mouseX - this.offsetX;
@@ -48,11 +50,9 @@ export default {
         };
       } else if (this.type === "rotation") {
         let relX =
-          this.mouseX - this.$refs.parallaxSection.offsetLeft - this.width / 2;
+          this.mouseX - this.offsetX - this.width / 2;
         let relY =
-          this.mouseY -
-          (this.$refs.parallaxSection.getBoundingClientRect().top +
-            document.documentElement.scrollTop);
+          this.mouseY - this.offsetY;
         this.movementX =
           (relX - this.width / 2) / this.width * this.parallaxStrength;
         this.movementY =
@@ -64,11 +64,9 @@ export default {
         };
       } else if (this.type === "depth") {
         let relX =
-          this.mouseX - this.$refs.parallaxSection.offsetLeft - this.width / 2;
+          this.mouseX - this.offsetX - this.width / 2;
         let relY =
-          this.mouseY -
-          (this.$refs.parallaxSection.getBoundingClientRect().top +
-            document.documentElement.scrollTop);
+          this.mouseY - this.offsetY;
         this.movementX =
           (relX - this.width / 2) /
           this.width *

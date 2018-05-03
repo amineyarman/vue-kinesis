@@ -1,21 +1,33 @@
 # vuejs-mouse-parallax
-A Mouse Parallax Effect in Vue.js
+A simple to use Mouse Parallax Component - Made with Vue.js
 
 ## Demo
 
 [vuejs mouse parallax](https://aminerman.com/playground/vuejs-mouse-parallax/)
 
 ## Usage
-*vuejs-mouse-parallax* uses slots. You can add html inside a parallax-element component.
+In order for the effect to work, the <parallax-element /> should be contained within <parallax-container />
+
+Options can then be passed to <parallax-element /> like so :
 
 ```html
 // App.vue
 
-<parallaxElement class="text-container" :parallaxStrength="-10" :mousePX='setMouseX' :mousePY='setMouseY'>
-    <h1>MouseParallax</h1>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, omnis atque. Dolore rerum, doloremque nulla animi neque repellat ad voluptatem cumque cum laudantium aut illo illum placeat nihil inventore ipsa.</p>
-</parallaxElement>
+<parallax-container>
+
+    <parallax-element :parallaxStrength="-5" :type="'translation'">
+        <h2>Put your content here</h2>
+     </parallax-element>
+
+</parallax-container>
 ```
+
+## Props
+
+| Prop   |      Type      |  Default Value | Description
+|----------|:-------------:|------|------|
+| parallaxStrength |  Number | 10 | Strength of the Parallax Effect |
+| type |  String   | 'translation' | 'translation' - 'rotation' - 'depth' |
 
 ## Build Setup
 
