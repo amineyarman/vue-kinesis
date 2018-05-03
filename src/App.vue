@@ -3,6 +3,7 @@
 		<div id="infos">
 			<a class="logo-link" href="https://aminerman.com" target="_blank"><img src="./assets/img/aminerman-logo.png" alt=""></a>
 			<h1>Vue.js Mouse Parallax</h1>
+      <img class="vmp-logo" src="./assets/img/vue-mouse-parallax.png" alt="">
 			<p>A simple to use Mouse Parallax Component - Made with Vue.js</p>
 			<a href="https://github.com/Aminerman/vuejs-mouse-parallax" target="_blank">
 			<img src="./assets/img/github-logo.svg" alt=""> Download
@@ -174,6 +175,12 @@ body {
           height: 100px;
         }
       }
+    }
+
+    .vmp-logo {
+      max-width: 350px;
+      width: 90%;
+      margin-top: 30px;
     }
   }
 
