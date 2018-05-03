@@ -1,37 +1,33 @@
 # vuejs-mouse-parallax
-A Mouse Parallax Effect in Vue.js
+A simple to use Mouse Parallax Component - Made with Vue.js
 
 ## Demo
 
 [vuejs mouse parallax](https://aminerman.com/playground/vuejs-mouse-parallax/)
 
 ## Usage
-*vuejs-mouse-parallax* uses slots. You can add html inside a parallax-element component.
+In order for the effect to work, the <parallax-element /> should be contained within <parallax-container />
+
+Options can then be passed to <parallax-element /> like so :
 
 ```html
 // App.vue
 
-<parallaxElement class="text-container" :parallaxStrength="-10" :mousePX='setMouseX' :mousePY='setMouseY'>
-    <h1>MouseParallax</h1>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, omnis atque. Dolore rerum, doloremque nulla animi neque repellat ad voluptatem cumque cum laudantium aut illo illum placeat nihil inventore ipsa.</p>
-</parallaxElement>
+<parallax-container>
+
+    <parallax-element :parallaxStrength="-5" :type="'translation'">
+        <h2>Put your content here</h2>
+     </parallax-element>
+
+</parallax-container>
 ```
 
 ## Props
 
 | Prop   |      Type      |  Default Value | Description
 |----------|:-------------:|------|------|
-| isHover |  Boolean | true | Activates parallax effect |
-| parallaxStrength |  Number | 10 | Parallax |
-| speedFactor |  Number   | 0.15 | factor on how strong the effect is|
-| direction |  String   | 'up' | Either 'up' or 'down', determines scroll direction of image |
-| fixed | Boolean | false | Other parallax effect. Image is fixed in position |
-| sectionHeight | Number | 70 | section height for mobile |
-| breakpoint | String | '(min-width: 968px)' | Media query for mobile deactivation |
-| sectionClass | String | 'Masthead' | CSS class of the outer section tag |
-| containerClass | String | 'Masthead__image' | CSS class of the container holding the  image |
-| parallaxClass | String | 'is-parallax' | Modifier class for the parallax effect |
-| fixedClass | String | 'is-fixed' | Modifier class for the fixed parallax effect |
+| parallaxStrength |  Number | 10 | Strength of the Parallax Effect |
+| type |  String   | 'translation' | 'translation' - 'rotation' - 'depth' |
 
 ## Build Setup
 
