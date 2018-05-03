@@ -20,7 +20,11 @@ export default {
 
   methods: {
     getMousePosition: throttle(function(e) {
-    
+      const children = this.$children.map(child => {
+        if (child.$options.propsData.parallaxStrength != 0) {
+          this.hovering = true;
+        }
+      });
       this.mouseX = e.pageX;
       this.mouseY = e.pageY;
       if (this.hovering === false) {
@@ -36,17 +40,19 @@ export default {
 
     parallaxStart() {
       this.hovering = true;
+      const children = this.$children.map(child => {
+        child.isHovering = true;
+      });
     },
 
     parallaxStop() {
       this.hovering = false;
+      const children = this.$children.map(child => {
+        child.isHovering = false;
+      });
     }
   },
-    mounted(){
-         if(this.$children[0].$options.propsData.parallaxStrength != 0) {
-             this.hovering = true
-         }
-    },
+  mounted() {},
 
   components: {
     parallaxElement

@@ -12,19 +12,16 @@
 			<p>Options can then be passed to <span class="html-tag">&lt;parallax-element /&gt;</span> like so :</p>
 			<pre v-highlightjs><code class="html">
         &lt;parallax-container>
-          &lt;template slot-scope="props">
 
-            &lt;parallax-element :isHover="props.isHover" :parallaxStrength="-5" :type="'translation'">
+            &lt;parallax-element :parallaxStrength="-5" :type="'translation'">
               &lt;h2>Put your content here&lt;/h2>
             &lt;/parallax-element>
 
-          &lt;/template>
         &lt;/parallax-container>
       </code></pre>
 			<p>You can set the <span class="html-tag">:parallaxStrength</span> to any number and the the <span class="html-tag">:type</span> to the following : </p>
 		</div>
 		<parallax-container class="horizontal-card">
-			<template slot-scope="props">
 				<parallax-element
 					class="text-container"
 					:parallaxStrength="-5"
@@ -38,24 +35,20 @@
 					:type="'translation'"
 					>
 				</parallax-element>
-			</template>
 		</parallax-container>
 		<pre v-highlightjs><code class="html">
       &lt;parallax-container class="horizontal-card">
-        &lt;template slot-scope="props">
 
-          &lt;parallax-element class="text-container" :isHover="props.isHover" :parallaxStrength="-5" :type="'translation'">
+          &lt;parallax-element class="text-container" :parallaxStrength="-5" :type="'translation'">
             &lt;h2>'translation'&lt;/h2>
           &lt;/parallax-element>
 
-          &lt;parallax-element class="background-image" :isHover="props.isHover" :parallaxStrength="-10" :type="'translation'">
+          &lt;parallax-element class="background-image" :parallaxStrength="-10" :type="'translation'">
           &lt;/parallax-element>
 
-        &lt;/template>
       &lt;/parallax-container>
       </code></pre>
 		<parallax-container class="horizontal-card centered-card">
-			<template slot-scope="props">
 				<parallax-element
 					class="text-container"
 					:parallaxStrength="15"
@@ -69,24 +62,20 @@
 					:type="'rotation'"
 					>
 				</parallax-element>
-			</template>
 		</parallax-container>
 		<pre v-highlightjs><code class="html">
       &lt;parallax-container class="horizontal-card centered-card">
-        &lt;template slot-scope="props">
 
-          &lt;parallax-element class="text-container" :isHover="props.isHover" :parallaxStrength="15" :type="'rotation'">
+          &lt;parallax-element class="text-container" :parallaxStrength="15" :type="'rotation'">
             &lt;h2>'rotation'&lt;/h2>
           &lt;/parallax-element>
 
-          &lt;parallax-element class="background-image" :isHover="props.isHover" :parallaxStrength="10" :type="'rotation'">
+          &lt;parallax-element class="background-image" :parallaxStrength="10" :type="'rotation'">
           &lt;/parallax-element>
           
-        &lt;/template>
       &lt;/parallax-container>
       </code></pre>
 		<parallax-container class="horizontal-card centered-card">
-			<template slot-scope="props">
 				<parallax-element
 					class="text-container"
 					:parallaxStrength="10"
@@ -96,25 +85,21 @@
 				</parallax-element>
 				<parallax-element
 					class="background-image"
-					:isHover="props.isHover"
 					:parallaxStrength="-10"
 					:type="'depth'"
 					>
 				</parallax-element>
-			</template>
 		</parallax-container>
 		<pre v-highlightjs><code class="html">
       &lt;parallax-container class="horizontal-card centered-card">
-        &lt;template slot-scope="props">
 
-          &lt;parallax-element class="text-container" :isHover="props.isHover" :parallaxStrength="10" :type="'depth'">
+          &lt;parallax-element class="text-container" :parallaxStrength="10" :type="'depth'">
             &lt;h2>'rotation'&lt;/h2>
           &lt;/parallax-element>
 
-          &lt;parallax-element class="background-image" :isHover="props.isHover" :parallaxStrength="-10" :type="'depth'">
+          &lt;parallax-element class="background-image" :parallaxStrength="-10" :type="'depth'">
           &lt;/parallax-element>
           
-        &lt;/template>
       &lt;/parallax-container>
       </code></pre>
 		<div id="footer">
