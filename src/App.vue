@@ -4,7 +4,7 @@
 			<a class="logo-link" href="https://aminerman.com" target="_blank"><img src="./assets/img/aminerman-logo.png" alt=""></a>
 			<h1>Vue.js Mouse Parallax</h1>
       <img class="vmp-logo" src="./assets/img/vue-mouse-parallax.png" alt="">
-			<p>A simple to use Mouse Parallax Component - Made with Vue.js</p>
+			<p>An easy to use Mouse Parallax Component - Made with Vue.js</p>
 			<a href="https://github.com/Aminerman/vuejs-mouse-parallax" target="_blank">
 			<img src="./assets/img/github-logo.svg" alt=""> Download
 			</a>

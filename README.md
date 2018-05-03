@@ -1,5 +1,5 @@
 # vuejs-mouse-parallax
-A simple to use Mouse Parallax Component - Made with Vue.js
+An easy to use Mouse Parallax Component - Made with Vue.js
 
 ## Demo
 
