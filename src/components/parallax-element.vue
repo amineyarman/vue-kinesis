@@ -52,11 +52,11 @@ export default {
         let relX =
           this.mouseX - this.offsetX - this.width / 2;
         let relY =
-          this.mouseY - this.offsetY;
+          (this.mouseY - this.offsetY) - (this.height / 2);
         this.movementX =
           (relX - this.width / 2) / this.width * this.parallaxStrength;
         this.movementY =
-          (relY - this.height / 2) / this.height * this.parallaxStrength;
+          (relY - (this.height/1.5)) / this.height * this.parallaxStrength;
         return {
           transform: `rotateX(${this.movementY}deg) rotateY(${
             this.movementX
@@ -66,13 +66,15 @@ export default {
         let relX =
           this.mouseX - this.offsetX - this.width / 2;
         let relY =
-          this.mouseY - this.offsetY;
+          (this.mouseY - this.offsetY) - (this.height/2);
+          console.log("relY: "+ relY)
+          console.log("height: "+ this.height)
         this.movementX =
           (relX - this.width / 2) /
           this.width *
           Math.abs(this.parallaxStrength);
         this.movementY =
-          (relY - this.height / 2) /
+          (relY - (this.height/1.5)) /
           this.height *
           Math.abs(this.parallaxStrength);
         return {
