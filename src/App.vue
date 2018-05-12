@@ -22,6 +22,33 @@
       </code></pre>
 			<p>You can set the <span class="html-tag">:parallaxStrength</span> to any number and the the <span class="html-tag">:type</span> to the following : </p>
 		</div>
+    <parallax-container class="horizontal-card centered-card">
+				<parallax-element
+					class="text-container"
+					:parallaxStrength="10"
+					:type="'depth'"
+					>
+					<h2>'depth'</h2>
+				</parallax-element>
+				<parallax-element
+					class="background-image"
+					:parallaxStrength="-10"
+					:type="'depth'"
+					>
+				</parallax-element>
+		</parallax-container>
+		<pre v-highlightjs><code class="html">
+      &lt;parallax-container class="horizontal-card centered-card">
+
+          &lt;parallax-element class="text-container" :parallaxStrength="10" :type="'depth'">
+            &lt;h2>'rotation'&lt;/h2>
+          &lt;/parallax-element>
+
+          &lt;parallax-element class="background-image" :parallaxStrength="-10" :type="'depth'">
+          &lt;/parallax-element>
+          
+      &lt;/parallax-container>
+      </code></pre>
 		<parallax-container class="horizontal-card">
 				<parallax-element
 					class="text-container"
@@ -72,33 +99,6 @@
           &lt;/parallax-element>
 
           &lt;parallax-element class="background-image" :parallaxStrength="10" :type="'rotation'">
-          &lt;/parallax-element>
-          
-      &lt;/parallax-container>
-      </code></pre>
-		<parallax-container class="horizontal-card centered-card">
-				<parallax-element
-					class="text-container"
-					:parallaxStrength="10"
-					:type="'depth'"
-					>
-					<h2>'depth'</h2>
-				</parallax-element>
-				<parallax-element
-					class="background-image"
-					:parallaxStrength="-10"
-					:type="'depth'"
-					>
-				</parallax-element>
-		</parallax-container>
-		<pre v-highlightjs><code class="html">
-      &lt;parallax-container class="horizontal-card centered-card">
-
-          &lt;parallax-element class="text-container" :parallaxStrength="10" :type="'depth'">
-            &lt;h2>'rotation'&lt;/h2>
-          &lt;/parallax-element>
-
-          &lt;parallax-element class="background-image" :parallaxStrength="-10" :type="'depth'">
           &lt;/parallax-element>
           
       &lt;/parallax-container>

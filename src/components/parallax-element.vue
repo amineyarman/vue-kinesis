@@ -6,6 +6,8 @@
 
 <script>
 
+import getPosition from '../js/getPosition'
+
 export default {
   props: ["parallaxStrength", "isHover", "type"],
 
@@ -36,12 +38,12 @@ export default {
       if (this.isHovering === false) {
         return;
       } else if (this.type === "translation") {
-        let relX = mouseX - this.offsetX;
-        let relY = mouseY - this.offsetY;
+        let relX = mouseX - getPosition(this.$refs.parallaxSection).x;
+        let relY = mouseY - getPosition(this.$refs.parallaxSection).y;
         this.movementX =
           (relX - this.width / 2) / this.width * this.parallaxStrength;
         this.movementY =
-          (relY - this.height / 2) / this.height * this.parallaxStrength;
+          (relY - this.height / 2) / this.height *this.parallaxStrength;
         return {
           transform: `translateX(${this.movementX}px) translateY(${
             this.movementY
@@ -49,23 +51,22 @@ export default {
         };
       } else if (this.type === "rotation") {
         let relX =
-          mouseX - this.offsetX - this.width / 2;
+          mouseX - getPosition(this.$refs.parallaxSection).x;
         let relY =
-          (mouseY - this.offsetY) - (this.height / 2);
+          mouseY - getPosition(this.$refs.parallaxSection).y;
         this.movementX =
           (relX - this.width / 2) / this.width * this.parallaxStrength;
         this.movementY =
-          (relY - (this.height/1.5)) / this.height * this.parallaxStrength;
+          (relY - (this.height/2)) / this.height * this.parallaxStrength;
+          let movement = (this.movementX) + (this.movementY)
         return {
-          transform: `rotateX(${this.movementY}deg) rotateY(${
-            this.movementX
-          }deg)`
+          transform: `rotateZ(${movement}deg)`
         };
       } else if (this.type === "depth") {
         let relX =
-          mouseX - this.offsetX - this.width / 2;
+          mouseX - getPosition(this.$refs.parallaxSection).x;
         let relY =
-          (mouseY - this.offsetY) - (this.height/2);
+          mouseY - getPosition(this.$refs.parallaxSection).y;
         this.movementX =
           (relX - this.width / 2) /
           this.width *

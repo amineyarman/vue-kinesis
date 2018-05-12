@@ -24,8 +24,8 @@ export default {
           this.hovering = true;
         }
       });
-      this.mouseX = e.pageX;
-      this.mouseY = e.pageY;
+      this.mouseX = e.clientX;
+      this.mouseY = e.clientY;
       if (this.hovering === false) {
         return;
       }
