@@ -6,7 +6,6 @@
 
 <script>
 import parallaxElement from "./parallax-element.vue";
-import { eventBus } from "../main.js";
 import throttle from "../js/throttle";
 
 export default {
@@ -29,12 +28,6 @@ export default {
       this.mouseY = e.pageY;
       if (this.hovering === false) {
         return;
-      } else {
-        eventBus.$emit("mousePositionChanged", {
-          mouseXB: this.mouseX,
-          mouseYB: this.mouseY,
-          hoveringB: this.hovering
-        });
       }
     }, 100),
 

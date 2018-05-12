@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import { eventBus } from "../main";
 
 export default {
   props: ["parallaxStrength", "isHover", "type"],
@@ -22,8 +21,6 @@ export default {
     return {
       width: 0,
       height: 0,
-      mouseX: 0,
-      mouseY: 0,
       offsetX: 0,
       offsetY: 0,
       movementX: 0,
@@ -34,11 +31,13 @@ export default {
 
   computed: {
     transformParallax() {
+      let mouseX = this.$parent.mouseX;
+      let mouseY = this.$parent.mouseY;
       if (this.isHovering === false) {
         return;
       } else if (this.type === "translation") {
-        let relX = this.mouseX - this.offsetX;
-        let relY = this.mouseY - this.offsetY;
+        let relX = mouseX - this.offsetX;
+        let relY = mouseY - this.offsetY;
         this.movementX =
           (relX - this.width / 2) / this.width * this.parallaxStrength;
         this.movementY =
@@ -50,9 +49,9 @@ export default {
         };
       } else if (this.type === "rotation") {
         let relX =
-          this.mouseX - this.offsetX - this.width / 2;
+          mouseX - this.offsetX - this.width / 2;
         let relY =
-          (this.mouseY - this.offsetY) - (this.height / 2);
+          (mouseY - this.offsetY) - (this.height / 2);
         this.movementX =
           (relX - this.width / 2) / this.width * this.parallaxStrength;
         this.movementY =
@@ -64,11 +63,9 @@ export default {
         };
       } else if (this.type === "depth") {
         let relX =
-          this.mouseX - this.offsetX - this.width / 2;
+          mouseX - this.offsetX - this.width / 2;
         let relY =
-          (this.mouseY - this.offsetY) - (this.height/2);
-          console.log("relY: "+ relY)
-          console.log("height: "+ this.height)
+          (mouseY - this.offsetY) - (this.height/2);
         this.movementX =
           (relX - this.width / 2) /
           this.width *
@@ -86,10 +83,6 @@ export default {
     }
   },
   created() {
-    eventBus.$on("mousePositionChanged", data => {
-      this.mouseX = data.mouseXB;
-      this.mouseY = data.mouseYB;
-    });
   }
 };
 </script>
