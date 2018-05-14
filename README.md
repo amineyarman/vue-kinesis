@@ -50,9 +50,9 @@ Vue.component('parallax-element', ParallaxElement)
 
 # Usage
 
-In order for the effect to work, the <parallax-element /> should be contained within <parallax-container />
+In order for the effect to work, the `<parallax-element />` should be contained within <parallax-container />
 
-Options can then be passed to <parallax-element /> like so :
+Options can then be passed to `<parallax-element />` like so :
 
 ```html
 // App.vue
