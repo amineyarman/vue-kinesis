@@ -1,5 +1,6 @@
 # vue-mouse-parallax
 
+[![npm](https://img.shields.io/npm/v/vue-mouse-parallax.svg) ![npm](https://img.shields.io/npm/dm/vue-mouse-parallax.svg)](https://www.npmjs.com/package/vue-mouse-parallax)
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 
 An easy to use Mouse Parallax Component - Made with Vue.js
@@ -50,7 +51,7 @@ Vue.component('parallax-element', ParallaxElement)
 
 # Usage
 
-In order for the effect to work, the `<parallax-element />` should be contained within <parallax-container />
+In order for the effect to work, the `<parallax-element />` should be contained within `<parallax-container />`
 
 Options can then be passed to `<parallax-element />` like so :
 
