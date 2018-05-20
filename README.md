@@ -37,7 +37,7 @@ Vue.component('parallax-container', ParallaxContainer)
 Vue.component('parallax-element', ParallaxElement)
 ```
 
-**⚠️ A css file is included when importing the package. You may have to setup your bundler to embed the css in your page.**
+**⚠️ A css file is included when importing the package.**
 
 ## Browser
 
@@ -73,6 +73,13 @@ Options can then be passed to `<parallax-element />` like so :
 |----------|:-------------:|------|------|
 | parallaxStrength |  Number | 10 | Strength of the Parallax Effect |
 | type |  String   | 'translation' | 'translation' - 'rotation' - 'depth' |
+
+## Todo
+
+- Nested parallax-elements
+- Better demo page
+- Default values
+- Value types
 
 
 ## License
