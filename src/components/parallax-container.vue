@@ -45,11 +45,6 @@ export default {
       });
     }
   },
-  mounted() {},
-
-  components: {
-    parallaxElement
-  }
 };
 </script>
 
