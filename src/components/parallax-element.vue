@@ -1,7 +1,11 @@
 <template>
-  <div ref="parallaxSection" class="parallax-element" :style="transformParallax">
-      <slot></slot>
-  </div>
+  <component :is="tag" ref="parallaxSection" class="parallax-element" :style="{
+    transform: transformParallax,
+    transformOrigin: transformOrigin,
+    transition: transition
+  }">
+    <slot></slot>
+  </component>
 </template>
 
 <script>
@@ -9,7 +13,30 @@
 import getPosition from '../js/getPosition'
 
 export default {
-  props: ["parallaxStrength", "isHover", "type"],
+  props: {
+    parallaxStrength: {
+      type: Number,
+      default: 10,
+      required: true,
+    },
+    type: {
+      type: String,
+      default: 'translation',
+      required: true,
+    },
+    tag: {
+      type: String,
+      default: 'div'
+    },
+    transition: {
+      type: String,
+      default: 'all 2s cubic-bezier(0.23, 1, 0.32, 1)'
+    },
+    transformOrigin: {
+      type: String,
+      default: 'center',
+    }
+  },
 
   mounted() {
     this.width = this.$refs.parallaxSection.offsetWidth;
@@ -44,11 +71,8 @@ export default {
           (relX - this.width / 2) / this.width * this.parallaxStrength;
         this.movementY =
           (relY - this.height / 2) / this.height *this.parallaxStrength;
-        return {
-          transform: `translateX(${this.movementX}px) translateY(${
-            this.movementY
-          }px)`
-        };
+        return `translateX(${this.movementX}px) translateY(${this.movementY}px)`;
+        
       } else if (this.type === "rotation") {
         let relX =
           mouseX - getPosition(this.$refs.parallaxSection).x;
@@ -58,10 +82,8 @@ export default {
           (relX - this.width / 2) / this.width * this.parallaxStrength;
         this.movementY =
           (relY - (this.height/2)) / this.height * this.parallaxStrength;
-          let movement = (this.movementX) + (this.movementY)
-        return {
-          transform: `rotateZ(${movement}deg)`
-        };
+          let movement = (this.movementX) + (this.movementY);
+        return `rotateZ(${movement}deg)`;
       } else if (this.type === "depth") {
         let relX =
           mouseX - getPosition(this.$refs.parallaxSection).x;
@@ -75,23 +97,10 @@ export default {
           (relY - (this.height/1.5)) /
           this.height *
           Math.abs(this.parallaxStrength);
-        return {
-          transform: `rotateX(${-this.movementY}deg) rotateY(${
-            this.movementX
-          }deg) translateZ(${this.parallaxStrength * 2}px) `
-        };
+        return `rotateX(${-this.movementY}deg) rotateY(${this.movementX}deg)
+        translateZ(${this.parallaxStrength * 2}px)`;
       }
     }
   },
-  created() {
-  }
 };
 </script>
-
-<style lang="scss" scoped>
-.parallax-element {
-  transform-origin: center;
-  transition: all 2s;
-  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-}
-</style>

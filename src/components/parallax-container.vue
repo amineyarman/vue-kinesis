@@ -1,14 +1,29 @@
 <template>
- <div class="parallax-container" @mousemove="getMousePosition" @mouseout="parallaxStop" @mouseover="parallaxStart">
-     <slot></slot>
-    </div>
+ <component :is="tag" class="parallax-container" @mousemove="getMousePosition"
+      @mouseout="parallaxStop" @mouseover="parallaxStart"
+      :style="{
+        perspective: perspective,
+      }"
+ >
+   <slot></slot>
+ </component>
 </template>
 
 <script>
-import parallaxElement from "./parallax-element.vue";
 import throttle from "../js/throttle";
 
 export default {
+  props: {
+    perspective: {
+      type: String,
+      default: '1000px'
+    },
+    tag: {
+      type: String,
+      default: 'div'
+    },
+  },
+  
   data() {
     return {
       mouseX: 0,
@@ -47,9 +62,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.parallax-container {
-  perspective: 1000px;
-}
-</style>

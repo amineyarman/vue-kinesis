@@ -69,10 +69,22 @@ Options can then be passed to `<parallax-element />` like so :
 
 ## Props
 
+### Parallax element
+
 | Prop   |      Type      |  Default Value | Description
 |----------|:-------------:|------|------|
 | parallaxStrength |  Number | 10 | Strength of the Parallax Effect |
 | type |  String   | 'translation' | 'translation' - 'rotation' - 'depth' |
+| tag |  String   | 'div' | Custom tag to use on the wrapper |
+| transition |  String   | 'all 2s cubic-bezier(0.23, 1, 0.32, 1)' | Custom [easing function](https://developer.mozilla.org/en-US/docs/Web/CSS/transition) |
+| transformOrigin |  String   | 'center' | Custom [transform origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin) |
+
+### Parallax container
+
+| Prop   |      Type      |  Default Value | Description
+|----------|:-------------:|------|------|
+| tag |  String   | 'div' | Custom tag to use on the wrapper |
+| perspective |  String   | '1000px' | Custom [perspective](https://developer.mozilla.org/en-US/docs/Web/CSS/perspective) |
 
 ## Todo
 
