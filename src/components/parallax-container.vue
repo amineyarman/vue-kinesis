@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import throttle from '../js/throttle';
+import throttle from '../lib/throttle';
+
 export default {
   name: 'ParallaxContainer',
   data() {

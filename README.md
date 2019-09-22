@@ -37,15 +37,11 @@ Vue.component('parallax-container', ParallaxContainer)
 Vue.component('parallax-element', ParallaxElement)
 ```
 
-**⚠️ A css file is included when importing the package.**
-
 ## Browser
 
 ```html
-<link rel="stylesheet" href="vue-mouse-parallax/dist/vue-mouse-parallax.css"/>
-
 <script src="vue.js"></script>
-<script src="vue-mouse-parallax/dist/vue-mouse-parallax.browser.js"></script>
+<script src="vue-mouse-parallax/dist/vue-mouse-parallax.common.js"></script>
 ```
 
 
@@ -56,30 +52,30 @@ In order for the effect to work, the `<parallax-element />` should be contained 
 Options can then be passed to `<parallax-element />` like so :
 
 ```html
-// App.vue
-
 <parallax-container>
-
-    <parallax-element :parallaxStrength="-5" :type="'translation'">
+    <parallax-element :parallaxStrength="10" type="translation" tag="div">
         <h2>Put your content here</h2>
      </parallax-element>
-
 </parallax-container>
 ```
 
 ## Props
 
+### parallax-container
+
+| Prop   |      Type      |  Default Value | Description
+|----------|:-------------:|------|------|
+| animationDuration |  Number | 1000 | Speed of the parallax animation in ms |
+| easing |  String   | cubic-bezier(0.23, 1, 0.32, 1) | Easing of the parallax animation |
+| tag |  String   | div | Takes any valid html tag |
+| perspective |  Number   | 1000 | Effective for the 'depth' parallax type |
+
+### parallax-element
 | Prop   |      Type      |  Default Value | Description
 |----------|:-------------:|------|------|
 | parallaxStrength |  Number | 10 | Strength of the Parallax Effect |
 | type |  String   | 'translation' | 'translation' - 'rotation' - 'depth' |
-
-## Todo
-
-- Nested parallax-elements
-- Better demo page
-- Default values
-- Value types
+| tag |  String   | div | Takes any valid html tag |
 
 
 ## License
