@@ -1,55 +1,72 @@
 <template>
- <div class="parallax-container" @mousemove="getMousePosition" @mouseout="parallaxStop" @mouseover="parallaxStart">
-     <slot></slot>
-    </div>
+  <component :is="tag"
+    @mousemove="getMousePosition"
+    @mouseleave="parallaxStop"
+    @mouseenter="parallaxStart"
+    :style="{perspective: `${perspective}px`}"
+  >
+    <slot></slot>
+  </component>
 </template>
 
 <script>
-import parallaxElement from "./parallax-element.vue";
-import throttle from "../js/throttle";
-
+import throttle from '../js/throttle';
 export default {
+  name: 'ParallaxContainer',
   data() {
     return {
-      mouseX: 0,
-      mouseY: 0,
-      hovering: false
+      mousePosition: {
+        x: 0,
+        y: 0,
+      },
+      isHovering: false,
+      didEnter: false,
     };
   },
-
+  props: {
+    animationDuration: {
+      type: Number,
+      default: 1000,
+    },
+    easing: {
+      type: String,
+      default: 'cubic-bezier(0.23, 1, 0.32, 1)',
+    },
+    tag: {
+      type: String,
+      default: 'div',
+    },
+    perspective: {
+      type: Number,
+      default: 1000,
+    },
+  },
   methods: {
-    getMousePosition: throttle(function(e) {
-      const children = this.$children.map(child => {
-        if (child.$options.propsData.parallaxStrength != 0) {
-          this.hovering = true;
-        }
-      });
-      this.mouseX = e.clientX;
-      this.mouseY = e.clientY;
-      if (this.hovering === false) {
-        return;
-      }
+    getRelativePosition() {
+      const shape = this.$el.getBoundingClientRect();
+      return {
+        top: shape.top,
+        left: shape.left,
+      };
+    },
+    // eslint-disable-next-line func-names
+    getMousePosition: throttle(function (event) {
+      this.mousePosition.x = event.clientX;
+      this.mousePosition.y = event.clientY;
     }, 100),
 
     parallaxStart() {
-      this.hovering = true;
-      const children = this.$children.map(child => {
-        child.isHovering = true;
-      });
+      this.isHovering = true;
+      this.didEnter = false;
+      setTimeout(() => {
+        this.didEnter = true;
+      }, 1000);
     },
 
     parallaxStop() {
-      this.hovering = false;
-      const children = this.$children.map(child => {
-        child.isHovering = false;
-      });
-    }
+      this.isHovering = false;
+      this.didEnter = false;
+    },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.parallax-container {
-  perspective: 1000px;
-}
-</style>
