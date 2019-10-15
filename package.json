@@ -1,6 +1,11 @@
 {
   "name": "vue-mouse-parallax",
-  "version": "1.0.2",
+  "version": "1.0.4",
+  "licence": "MIT",
+  "author": {
+    "name": "Amine Bouyarmane",
+    "email": "amine.bouyarmane@gmail.com"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -8,12 +13,7 @@
     "lint": "vue-cli-service lint"
   },
   "main": "./dist/vue-mouse-parallax.common.js",
-  "files": [
-    "dist/*",
-    "src/*",
-    "*.json",
-    "*.js"
-  ],
+  "files": [  "dist/*",  "src/*", "*.json",  "*.js"],
   "dependencies": {
     "core-js": "^2.6.5",
     "vue": "^2.6.10"

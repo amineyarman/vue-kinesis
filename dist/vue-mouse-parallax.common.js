@@ -967,7 +967,7 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"dad392d8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/parallax-container.vue?vue&type=template&id=47324542&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"055a6f9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/parallax-container.vue?vue&type=template&id=47324542&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"component",style:({perspective: (_vm.perspective + "px")}),on:{"mousemove":_vm.getMousePosition,"mouseleave":_vm.parallaxStop,"mouseenter":_vm.parallaxStart}},[_vm._t("default")],2)}
 var staticRenderFns = []
 
@@ -984,16 +984,17 @@ function throttle(callback, delay) {
 
   return function () {
     var context = this;
+    var newDelay = this.animationDuration > 1000 ? delay : this.animationDuration / 10;
     var now = +new Date(); // eslint-disable-next-line prefer-rest-params
 
     var args = arguments;
 
-    if (last && now < last + delay) {
+    if (last && now < last + newDelay) {
       clearTimeout(timer);
       timer = setTimeout(function () {
         last = now;
         callback.apply(context, args);
-      }, delay);
+      }, newDelay);
     } else {
       last = now;
       callback.apply(context, args);
@@ -1189,7 +1190,7 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var parallax_container = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"dad392d8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/parallax-element.vue?vue&type=template&id=c634ae76&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"055a6f9a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/parallax-element.vue?vue&type=template&id=c634ae76&
 var parallax_elementvue_type_template_id_c634ae76_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"component",style:(Object.assign({}, _vm.transform, _vm.transformParameters))},[_vm._t("default")],2)}
 var parallax_elementvue_type_template_id_c634ae76_staticRenderFns = []
 
