@@ -1,5 +1,6 @@
 <template>
-  <component :is="tag"
+  <component
+    :is="tag"
     @mousemove="getMousePosition"
     @mouseleave="parallaxStop"
     @mouseenter="parallaxStart"
@@ -21,6 +22,8 @@ export default {
         y: 0,
       },
       isHovering: false,
+      isHoverable: false,
+      attemptedHover: false,
       didEnter: false,
     };
   },
@@ -42,6 +45,14 @@ export default {
       default: 1000,
     },
   },
+  mounted() {
+    setTimeout(() => {
+      this.isHoverable = true;
+      if (this.attemptedHover) {
+        this.parallaxStart();
+      }
+    }, 100);
+  },
   methods: {
     getRelativePosition() {
       const shape = this.$el.getBoundingClientRect();
@@ -57,11 +68,14 @@ export default {
     }, 100),
 
     parallaxStart() {
-      this.isHovering = true;
-      this.didEnter = false;
-      setTimeout(() => {
-        this.didEnter = true;
-      }, 1000);
+      this.attemptedHover = true;
+      if (this.isHoverable) {
+        this.isHovering = true;
+        this.didEnter = false;
+        setTimeout(() => {
+          this.didEnter = true;
+        }, 1000);
+      }
     },
 
     parallaxStop() {
