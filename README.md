@@ -53,9 +53,15 @@ Options can then be passed to `<parallax-element />` like so :
 
 ```html
 <parallax-container>
-    <parallax-element :parallaxStrength="10" type="translation" tag="div">
-        <h2>Put your content here</h2>
-     </parallax-element>
+    <template v-slot="{ context }">
+        <parallax-element
+            :context="context"
+            :parallaxStrength="10"
+            type="translation"
+            tag="div">
+            <h2>Put your content here</h2>
+        </parallax-element>
+    </template>
 </parallax-container>
 ```
 
@@ -73,6 +79,7 @@ Options can then be passed to `<parallax-element />` like so :
 ### parallax-element
 | Prop   |      Type      |  Default Value | Description
 |----------|:-------------:|------|------|
+| context |  Object | mousePosition, isHovering, isHovering, didEnter, animationDuration, easing, shape | passing parent context |
 | parallaxStrength |  Number | 10 | Strength of the Parallax Effect |
 | type |  String   | 'translation' | 'translation' - 'rotation' - 'depth' |
 | tag |  String   | div | Takes any valid html tag |

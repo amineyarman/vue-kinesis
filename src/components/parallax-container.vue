@@ -6,7 +6,16 @@
     @mouseenter="parallaxStart"
     :style="{perspective: `${perspective}px`}"
   >
-    <slot></slot>
+    <slot :context="{
+      mousePosition,
+      isHovering,
+      isHoverable,
+      didEnter,
+      animationDuration,
+      easing,
+      shape,
+      }">
+    </slot>
   </component>
 </template>
 
@@ -25,6 +34,7 @@ export default {
       isHoverable: false,
       attemptedHover: false,
       didEnter: false,
+      shape: null,
     };
   },
   props: {
@@ -46,6 +56,7 @@ export default {
     },
   },
   mounted() {
+    this.shape = this.$el.getBoundingClientRect();
     setTimeout(() => {
       this.isHoverable = true;
       if (this.attemptedHover) {

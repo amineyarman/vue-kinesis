@@ -8,6 +8,10 @@
 export default {
   name: 'ParallaxElement',
   props: {
+    context: {
+      type: Object,
+      required: true,
+    },
     parallaxStrength: {
       type: Number,
       default: 10,
@@ -22,21 +26,14 @@ export default {
     },
   },
   computed: {
-    parent() {
-      return this.$parent;
-    },
-    isHovering() {
-      return this.parent.isHovering;
-    },
-    mousePosition() {
-      return this.parent.mousePosition;
-    },
     transform() {
-      if (!this.parent.isHovering) return;
-      const shape = this.$el ? this.parent.$el.getBoundingClientRect() : { top: 0, left: 0 };
+      const { isHovering, mousePosition, shape } = this.context;
+
+      if (!isHovering) return;
+
       const parallaxStrength = this.type === 'depth' ? Math.abs(this.parallaxStrength) : this.parallaxStrength;
-      const relativeX = this.mousePosition.x - shape.left;
-      const relativeY = this.mousePosition.y - shape.top;
+      const relativeX = mousePosition.x - shape.left;
+      const relativeY = mousePosition.y - shape.top;
       const movementX = ((relativeX - shape.width / 2) / (shape.width / 2)) * parallaxStrength;
       const movementY = ((relativeY - shape.height / 2) / (shape.height / 2)) * parallaxStrength;
 
@@ -61,13 +58,13 @@ export default {
       };
     },
     transitionDuration() {
-      const { animationDuration } = this.parent;
+      const { animationDuration, didEnter } = this.context;
       const durationException = animationDuration > 400 ? animationDuration : 400;
-      const duration = this.parent.didEnter ? animationDuration : durationException;
+      const duration = didEnter ? animationDuration : durationException;
       return `${duration}ms`;
     },
     transitionTimingFunction() {
-      return this.parent.easing;
+      return this.context.easing;
     },
   },
 };
