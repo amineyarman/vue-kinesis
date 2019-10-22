@@ -6,16 +6,7 @@
     @mouseenter="parallaxStart"
     :style="{perspective: `${perspective}px`}"
   >
-    <slot :context="{
-      mousePosition,
-      isHovering,
-      isHoverable,
-      didEnter,
-      animationDuration,
-      easing,
-      shape,
-      }">
-    </slot>
+    <slot></slot>
   </component>
 </template>
 
@@ -24,6 +15,46 @@ import throttle from '../lib/throttle';
 
 export default {
   name: 'ParallaxContainer',
+  provide() {
+    const context = {};
+
+    Object.defineProperty(context, 'mousePosition', {
+      enumerable: true,
+      get: () => this.mousePosition,
+    });
+
+    Object.defineProperty(context, 'isHovering', {
+      enumerable: true,
+      get: () => this.isHoverable,
+    });
+
+    Object.defineProperty(context, 'isHoverable', {
+      enumerable: true,
+      get: () => this.isHoverable,
+    });
+
+    Object.defineProperty(context, 'didEnter', {
+      enumerable: true,
+      get: () => this.didEnter,
+    });
+
+    Object.defineProperty(context, 'animationDuration', {
+      enumerable: true,
+      get: () => this.animationDuration,
+    });
+
+    Object.defineProperty(context, 'easing', {
+      enumerable: true,
+      get: () => this.easing,
+    });
+
+    Object.defineProperty(context, 'shape', {
+      enumerable: true,
+      get: () => this.shape,
+    });
+
+    return { context };
+  },
   data() {
     return {
       mousePosition: {

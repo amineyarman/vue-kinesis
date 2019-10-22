@@ -8,10 +8,6 @@
 export default {
   name: 'ParallaxElement',
   props: {
-    context: {
-      type: Object,
-      required: true,
-    },
     parallaxStrength: {
       type: Number,
       default: 10,
@@ -25,6 +21,7 @@ export default {
       default: 'div',
     },
   },
+  inject: ['context'],
   computed: {
     transform() {
       const { isHovering, mousePosition, shape } = this.context;
