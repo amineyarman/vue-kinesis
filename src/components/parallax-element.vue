@@ -33,7 +33,7 @@ export default {
     },
     transform() {
       if (!this.parent.isHovering) return;
-      const shape = this.$el ? this.parent.$el.getBoundingClientRect() : { top: 0, left: 0 };
+      const shape = this.$el ? this.parent.shape : { top: 0, left: 0 };
       const parallaxStrength = this.type === 'depth' ? Math.abs(this.parallaxStrength) : this.parallaxStrength;
       const relativeX = this.mousePosition.x - shape.left;
       const relativeY = this.mousePosition.y - shape.top;
