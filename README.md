@@ -77,12 +77,13 @@ Options can then be passed to `<parallax-element />` like so :
 | type |  String   | 'translation' | 'translation' - 'rotation' - 'depth' |
 | tag |  String   | div | Takes any valid html tag |
 
-# Usage
+# Todo
 - Improve nested parallax
 - Combine multiple transform types on one element
 - filter: drop-shadow() prop on parallax-element
 - Translate on one Axis
 - Use 3d transform
+- parallax-element not required to be a direct child of parallax-container
 
 ## License
 
