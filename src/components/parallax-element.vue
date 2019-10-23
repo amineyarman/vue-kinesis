@@ -42,12 +42,12 @@ export default {
 
       let transform;
       if (this.type === 'translation') {
-        transform = `translateX(${-movementX}px) translateY(${-movementY}px)`;
+        transform = `translate3d(${-movementX}px, ${-movementY}px, 0)`;
       } else if (this.type === 'rotation') {
         const movement = movementX + movementY;
-        transform = `rotateZ(${movement}deg)`;
+        transform = `rotate3d(0,0,1,${movement}deg)`;
       } else if (this.type === 'depth') {
-        transform = `rotateX(${-movementY}deg) rotateY(${movementX}deg) translateZ(${this.parallaxStrength * 2}px) `;
+        transform = `rotateX(${-movementY}deg) rotateY(${movementX}deg) translate3d(0,0,${this.parallaxStrength * 2}px)`;
       }
       // eslint-disable-next-line consistent-return
       return { transform };

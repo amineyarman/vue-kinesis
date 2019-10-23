@@ -82,7 +82,7 @@ Options can then be passed to `<parallax-element />` like so :
 - Combine multiple transform types on one element
 - filter: drop-shadow() prop on parallax-element
 - Translate on one Axis
-- Use 3d transform
+- Touch events
 - parallax-element not required to be a direct child of parallax-container
 
 ## License
