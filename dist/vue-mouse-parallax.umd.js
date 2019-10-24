@@ -976,12 +976,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d96189de-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/parallax-container.vue?vue&type=template&id=a1d513bc&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4f429782-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/parallax-container.vue?vue&type=template&id=5ff65e2c&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"component",style:({perspective: (_vm.perspective + "px")}),on:{"mousemove":_vm.getMousePosition,"mouseleave":_vm.parallaxStop,"mouseenter":_vm.parallaxStart}},[_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/parallax-container.vue?vue&type=template&id=a1d513bc&
+// CONCATENATED MODULE: ./src/components/parallax-container.vue?vue&type=template&id=5ff65e2c&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
@@ -1027,6 +1027,56 @@ function throttle(callback, delay) {
 
 /* harmony default export */ var parallax_containervue_type_script_lang_js_ = ({
   name: 'ParallaxContainer',
+  provide: function provide() {
+    var _this = this;
+
+    var context = {};
+    Object.defineProperty(context, 'mousePosition', {
+      enumerable: true,
+      get: function get() {
+        return _this.mousePosition;
+      }
+    });
+    Object.defineProperty(context, 'isHovering', {
+      enumerable: true,
+      get: function get() {
+        return _this.isHovering;
+      }
+    });
+    Object.defineProperty(context, 'isHoverable', {
+      enumerable: true,
+      get: function get() {
+        return _this.isHoverable;
+      }
+    });
+    Object.defineProperty(context, 'didEnter', {
+      enumerable: true,
+      get: function get() {
+        return _this.didEnter;
+      }
+    });
+    Object.defineProperty(context, 'animationDuration', {
+      enumerable: true,
+      get: function get() {
+        return _this.animationDuration;
+      }
+    });
+    Object.defineProperty(context, 'easing', {
+      enumerable: true,
+      get: function get() {
+        return _this.easing;
+      }
+    });
+    Object.defineProperty(context, 'shape', {
+      enumerable: true,
+      get: function get() {
+        return _this.shape;
+      }
+    });
+    return {
+      context: context
+    };
+  },
   data: function data() {
     return {
       mousePosition: {
@@ -1036,7 +1086,8 @@ function throttle(callback, delay) {
       isHovering: false,
       isHoverable: false,
       attemptedHover: false,
-      didEnter: false
+      didEnter: false,
+      shape: null
     };
   },
   props: {
@@ -1058,13 +1109,14 @@ function throttle(callback, delay) {
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
+    this.shape = this.$el.getBoundingClientRect();
     setTimeout(function () {
-      _this.isHoverable = true;
+      _this2.isHoverable = true;
 
-      if (_this.attemptedHover) {
-        _this.parallaxStart();
+      if (_this2.attemptedHover) {
+        _this2.parallaxStart();
       }
     }, 100);
   },
@@ -1078,11 +1130,12 @@ function throttle(callback, delay) {
     },
     // eslint-disable-next-line func-names
     getMousePosition: throttle(function (event) {
+      this.shape = this.$el.getBoundingClientRect();
       this.mousePosition.x = event.clientX;
       this.mousePosition.y = event.clientY;
     }, 100),
     parallaxStart: function parallaxStart() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.attemptedHover = true;
 
@@ -1090,7 +1143,7 @@ function throttle(callback, delay) {
         this.isHovering = true;
         this.didEnter = false;
         setTimeout(function () {
-          _this2.didEnter = true;
+          _this3.didEnter = true;
         }, 1000);
       }
     },
@@ -1217,12 +1270,12 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var parallax_container = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"d96189de-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/parallax-element.vue?vue&type=template&id=a8d0797e&
-var parallax_elementvue_type_template_id_a8d0797e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"component",style:(Object.assign({}, _vm.transform, _vm.transformParameters))},[_vm._t("default")],2)}
-var parallax_elementvue_type_template_id_a8d0797e_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4f429782-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/parallax-element.vue?vue&type=template&id=ebb0eba4&
+var parallax_elementvue_type_template_id_ebb0eba4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"component",style:(Object.assign({}, _vm.transform, _vm.transformParameters))},[_vm._t("default")],2)}
+var parallax_elementvue_type_template_id_ebb0eba4_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/parallax-element.vue?vue&type=template&id=a8d0797e&
+// CONCATENATED MODULE: ./src/components/parallax-element.vue?vue&type=template&id=ebb0eba4&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/parallax-element.vue?vue&type=script&lang=js&
 
@@ -1248,25 +1301,17 @@ var parallax_elementvue_type_template_id_a8d0797e_staticRenderFns = []
       default: 'div'
     }
   },
+  inject: ['context'],
   computed: {
-    parent: function parent() {
-      return this.$parent;
-    },
-    isHovering: function isHovering() {
-      return this.parent.isHovering;
-    },
-    mousePosition: function mousePosition() {
-      return this.parent.mousePosition;
-    },
     transform: function transform() {
-      if (!this.parent.isHovering) return;
-      var shape = this.$el ? this.parent.$el.getBoundingClientRect() : {
-        top: 0,
-        left: 0
-      };
+      var _this$context = this.context,
+          isHovering = _this$context.isHovering,
+          mousePosition = _this$context.mousePosition,
+          shape = _this$context.shape;
+      if (!isHovering) return;
       var parallaxStrength = this.type === 'depth' ? Math.abs(this.parallaxStrength) : this.parallaxStrength;
-      var relativeX = this.mousePosition.x - shape.left;
-      var relativeY = this.mousePosition.y - shape.top;
+      var relativeX = mousePosition.x - shape.left;
+      var relativeY = mousePosition.y - shape.top;
       var movementX = (relativeX - shape.width / 2) / (shape.width / 2) * parallaxStrength;
       var movementY = (relativeY - shape.height / 2) / (shape.height / 2) * parallaxStrength;
       var transform;
@@ -1294,13 +1339,15 @@ var parallax_elementvue_type_template_id_a8d0797e_staticRenderFns = []
       };
     },
     transitionDuration: function transitionDuration() {
-      var animationDuration = this.parent.animationDuration;
+      var _this$context2 = this.context,
+          animationDuration = _this$context2.animationDuration,
+          didEnter = _this$context2.didEnter;
       var durationException = animationDuration > 400 ? animationDuration : 400;
-      var duration = this.parent.didEnter ? animationDuration : durationException;
+      var duration = didEnter ? animationDuration : durationException;
       return "".concat(duration, "ms");
     },
     transitionTimingFunction: function transitionTimingFunction() {
-      return this.parent.easing;
+      return this.context.easing;
     }
   }
 });
@@ -1316,8 +1363,8 @@ var parallax_elementvue_type_template_id_a8d0797e_staticRenderFns = []
 
 var parallax_element_component = normalizeComponent(
   components_parallax_elementvue_type_script_lang_js_,
-  parallax_elementvue_type_template_id_a8d0797e_render,
-  parallax_elementvue_type_template_id_a8d0797e_staticRenderFns,
+  parallax_elementvue_type_template_id_ebb0eba4_render,
+  parallax_elementvue_type_template_id_ebb0eba4_staticRenderFns,
   false,
   null,
   null,
