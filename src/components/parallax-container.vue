@@ -105,6 +105,7 @@ export default {
     },
     // eslint-disable-next-line func-names
     getMousePosition: throttle(function (event) {
+      this.shape = this.$el.getBoundingClientRect();
       this.mousePosition.x = event.clientX;
       this.mousePosition.y = event.clientY;
     }, 100),
