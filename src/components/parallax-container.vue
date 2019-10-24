@@ -25,7 +25,7 @@ export default {
 
     Object.defineProperty(context, 'isHovering', {
       enumerable: true,
-      get: () => this.isHoverable,
+      get: () => this.isHovering,
     });
 
     Object.defineProperty(context, 'isHoverable', {
