@@ -1,6 +1,6 @@
 {
   "name": "vue-mouse-parallax",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "licence": "MIT",
   "author": {
     "name": "Amine Bouyarmane",
@@ -34,10 +34,7 @@
     "lint-staged": "^8.1.5",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.10",
-    "vue-highlightjs": "^1.3.3",
-    "vue-slider-component": "^3.0.41",
-    "vue2-transitions": "^0.3.0"
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,

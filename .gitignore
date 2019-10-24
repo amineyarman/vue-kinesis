@@ -20,11 +20,3 @@ yarn-error.log*
 *.sw?
 
 publish.txt
-
-App.vue
-main.js
-democomponents/
-styles/
-assets/
-vue.config.js
-demopackage.json
