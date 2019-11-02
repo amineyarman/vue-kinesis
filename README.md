@@ -78,11 +78,13 @@ Options can then be passed to `<parallax-element />` like so :
 | tag |  String   | div | Takes any valid html tag |
 
 # Todo
-- Improve nested parallax
 - Combine multiple transform types on one element
 - filter: drop-shadow() prop on parallax-element
-- Translate on one Axis
+- Translate on one direction
 - Touch events
+- Gyroscope
+- Events
+- Active prop
 
 ## License
 

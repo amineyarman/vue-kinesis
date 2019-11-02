@@ -20,6 +20,14 @@ export default {
       type: String,
       default: 'div',
     },
+    limitX: {
+      type: Boolean,
+      default: false,
+    },
+    limitY: {
+      type: Boolean,
+      default: false,
+    },
   },
   inject: ['context'],
   computed: {
@@ -36,7 +44,7 @@ export default {
 
       let transform;
       if (this.type === 'translation') {
-        transform = `translate3d(${-movementX}px, ${-movementY}px, 0)`;
+        transform = `translate3d(${this.limitY ? 0 : -movementX}px, ${this.limitX ? 0 : -movementY}px, 0)`;
       } else if (this.type === 'rotation') {
         const movement = movementX + movementY;
         transform = `rotate3d(0,0,1,${movement}deg)`;
