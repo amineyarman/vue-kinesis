@@ -46,10 +46,17 @@ export default {
       if (this.type === 'translation') {
         transform = `translate3d(${this.limitY ? 0 : -movementX}px, ${this.limitX ? 0 : -movementY}px, 0)`;
       } else if (this.type === 'rotation') {
-        const movement = movementX + movementY;
+        let movement;
+        if (this.limitX) {
+          movement = movementX * 2;
+        } else if (this.limitY) {
+          movement = movementY * 2;
+        } else {
+          movement = movementX + movementY;
+        }
         transform = `rotate3d(0,0,1,${movement}deg)`;
       } else if (this.type === 'depth') {
-        transform = `rotateX(${-movementY}deg) rotateY(${movementX}deg) translate3d(0,0,${this.parallaxStrength * 2}px)`;
+        transform = `rotateX(${this.limitX ? 0 : -movementY}deg) rotateY(${this.limitY ? 0 : -movementX}deg) translate3d(0,0,${this.parallaxStrength * 2}px)`;
       }
       // eslint-disable-next-line consistent-return
       return { transform };
