@@ -56,7 +56,7 @@ export default {
         }
         transform = `rotate3d(0,0,1,${movement}deg)`;
       } else if (this.type === 'depth') {
-        transform = `rotateX(${this.limitX ? 0 : -movementY}deg) rotateY(${this.limitY ? 0 : -movementX}deg) translate3d(0,0,${this.parallaxStrength * 2}px)`;
+        transform = `rotateX(${this.limitX ? 0 : -movementY}deg) rotateY(${this.limitY ? 0 : movementX}deg) translate3d(0,0,${this.parallaxStrength * 2}px)`;
       }
       // eslint-disable-next-line consistent-return
       return { transform };
