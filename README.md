@@ -1,6 +1,6 @@
 # vue-kinesis
 
-[![npm](https://img.shields.io/npm/v/vue-kinesis.svg) ![npm](https://img.shields.io/npm/dm/vue-kinesis.svg)](https://img.shields.io/npm/v/vue-kinesis.svg) 
+[![npm](https://img.shields.io/npm/v/vue-kinesis.svg)](https://img.shields.io/npm/v/vue-kinesis.svg) 
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 
 Easy to use Vue.js components for creating interactive animations
