@@ -1,18 +1,21 @@
 {
-  "name": "vue-mouse-parallax",
-  "version": "1.2.2",
+  "name": "vue-kinesis",
+  "version": "0.9.1",
   "licence": "MIT",
   "author": {
     "name": "Amine Bouyarmane",
     "email": "amine.bouyarmane@gmail.com"
   },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build-bundle": "vue-cli-service build --target lib --name vue-mouse-parallax ./src/components/index.js",
-    "lint": "vue-cli-service lint"
+    "build-bundle": "vue-cli-service build --target lib --name vue-mouse-parallax ./src/legacycomponents/index.js",
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
+    "build:umd": "rollup --config rollup.config.js --format umd --file dist/vue-kinesis.umd.js",
+    "build:es": "rollup --config rollup.config.js --format es --file dist/vue-kinesis.esm.js",
+    "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/vue-kinesis.min.js"
   },
-  "main": "./dist/vue-mouse-parallax.common.js",
+  "main": "./dist/vue-kinesis.umd.js",
+  "module": "dist/vue-kinesis.esm.js",
+  "unpkg": "dist/vue-kinesis.min.js",
   "files": [
     "dist/*",
     "src/*",
@@ -24,6 +27,8 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@rollup/plugin-buble": "^0.21.0",
+    "@rollup/plugin-commonjs": "^11.0.0",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-service": "^3.11.0",
@@ -32,6 +37,8 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^8.1.5",
+    "rollup": "^1.27.14",
+    "rollup-plugin-vue": "^5.1.1",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"

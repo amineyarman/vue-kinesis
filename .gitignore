@@ -20,3 +20,4 @@ yarn-error.log*
 *.sw?
 
 publish.txt
+/legacycomponents
