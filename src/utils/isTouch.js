@@ -1,3 +1,3 @@
 export default function isTouch() {
-  return 'ontouchstart' in document.documentElement;
+  return /Mobi|Android/i.test(navigator.userAgent);
 }

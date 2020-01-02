@@ -1,17 +1,22 @@
 {
   "name": "vue-kinesis",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "licence": "MIT",
   "author": {
     "name": "Amine Bouyarmane",
     "email": "amine.bouyarmane@gmail.com"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Aminerman/vue-kinesis"
+  },
   "scripts": {
-    "build-bundle": "vue-cli-service build --target lib --name vue-mouse-parallax ./src/legacycomponents/index.js",
+    "build-bundle": "vue-cli-service build --no-clean --target lib --name vue-kinesis src/index.js",
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
     "build:umd": "rollup --config rollup.config.js --format umd --file dist/vue-kinesis.umd.js",
     "build:es": "rollup --config rollup.config.js --format es --file dist/vue-kinesis.esm.js",
-    "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/vue-kinesis.min.js"
+    "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/vue-kinesis.min.js",
+    "lint": "vue-cli-service lint"
   },
   "main": "./dist/vue-kinesis.umd.js",
   "module": "dist/vue-kinesis.esm.js",

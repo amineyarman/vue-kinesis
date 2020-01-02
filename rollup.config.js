@@ -3,7 +3,7 @@ import vue from 'rollup-plugin-vue';
 import buble from '@rollup/plugin-buble';
 
 export default {
-  input: 'src/components/wrapper.js',
+  input: 'src/index.js',
   output: {
     name: 'VueKinesis',
     exports: 'named',

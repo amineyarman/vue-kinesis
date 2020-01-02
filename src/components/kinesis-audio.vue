@@ -5,57 +5,20 @@
 </template>
 
 <script>
+import motionMixin from '../mixins/motion_mixin';
+
 export default {
   name: 'KinesisAudio',
   inject: ['context'],
+  mixins: [motionMixin],
   props: {
     tag: {
       type: String,
       default: 'div',
     },
-    type: {
-      type: String,
-      default: 'translate', // add scale, change rotate, translate, perspective, color, opacity, custom
-    },
-    transformOrigin: {
-      type: String,
-      default: 'center',
-    },
-    originX: {
-      type: Number,
-      default: 50,
-    },
-    originY: {
-      type: Number,
-      default: 50,
-    },
-    strength: {
-      type: Number,
-      default: 20,
-    },
     audioIndex: {
       type: Number,
       default: 50,
-    },
-    axis: {
-      type: String,
-      default: null,
-    },
-    maxX: {
-      type: Number,
-      default: null,
-    },
-    maxY: {
-      type: Number,
-      default: null,
-    },
-    minX: {
-      type: Number,
-      default: null,
-    },
-    minY: {
-      type: Number,
-      default: null,
     },
   },
   computed: {
