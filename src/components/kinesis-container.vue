@@ -164,8 +164,9 @@ export default {
     getCoordinates(x, y) {
       return { x, y };
     },
+    // eslint-disable-next-line func-names
     handleMovement: throttle(function (event) {
-      if (!this.active || this.event === 'scroll') return;
+      if (!this.active || this.event === 'scroll' || !this.isMoving) return;
       const { pointer } = this;
       pointer.x = event.clientX;
       pointer.y = event.clientY;
