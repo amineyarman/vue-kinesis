@@ -27,49 +27,23 @@ export default {
   mixins: [baseMixin, perspectiveMixin, audioMixin],
   provide() {
     const context = {};
+    const providedProps = [
+      'audioData',
+      'cycleMovement',
+      'duration',
+      'easing',
+      'event',
+      'isMoving',
+      'movement',
+      'orientation',
+      'scrollPosition',
+    ]
 
-    Object.defineProperty(context, 'audioData', {
-      enumerable: true,
-      get: () => this.audioData,
-    });
-    Object.defineProperty(context, 'cycleMovement', {
-      enumerable: true,
-      get: () => this.cycleMovement,
-    });
-
-    Object.defineProperty(context, 'duration', {
-      enumerable: true,
-      get: () => this.duration,
-    });
-
-    Object.defineProperty(context, 'easing', {
-      enumerable: true,
-      get: () => this.easing,
-    });
-
-    Object.defineProperty(context, 'event', {
-      enumerable: true,
-      get: () => this.event,
-    });
-
-    Object.defineProperty(context, 'isMoving', {
-      enumerable: true,
-      get: () => this.isMoving,
-    });
-
-    Object.defineProperty(context, 'movement', {
-      enumerable: true,
-      get: () => this.movement,
-    });
-
-    Object.defineProperty(context, 'orientation', {
-      enumerable: true,
-      get: () => this.orientation,
-    });
-
-    Object.defineProperty(context, 'scrollPosition', {
-      enumerable: true,
-      get: () => this.scrollPosition,
+    providedProps.forEach(prop => {
+      return Object.defineProperty(context, prop, {
+        enumerable: true,
+        get: () => this[prop],
+      });
     });
 
     return { context };
