@@ -48,8 +48,8 @@ export default {
 
       if (!context.isMoving && context.event === 'move') return {};
 
-      let transform; let movementX; let
-        movementY;
+      let movementX;
+      let movementY;
 
       const eventTrigger = context.event;
 
@@ -95,23 +95,14 @@ export default {
         const cycleY = height * Math.sin(y * this.cycle);
 
         movementX = this.axis === 'x' ? (cycleX / (width / 2)) * strength : 0;
-        movementY = this.axis === 'y' || !this.axis
-          ? (cycleY / (height / 2)) * strength
-          : 0;
+        movementY = this.axis === 'y' || !this.axis ? (cycleY / (height / 2)) * strength : 0;
       }
 
       let transformType = this.type;
 
-      transformType = transformType === 'scaleX' || transformType === 'scaleY'
-        ? 'scale'
-        : transformType;
+      transformType = transformType === 'scaleX' || transformType === 'scaleY' ? 'scale' : transformType;
 
-      transform = this.transformSwitch(
-        transformType,
-        movementX,
-        movementY,
-        this.strength,
-      );
+      const transform = this.transformSwitch(transformType, movementX, movementY, this.strength);
       return { transform };
     },
   },
