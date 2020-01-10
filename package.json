@@ -82,12 +82,15 @@
   },
   "keywords": [
     "frontend",
+    "animation",
+    "interaction",
+    "vue",
     "vue.js",
-    "vuejs",
-    "vue2",
     "parallax",
     "mouse",
     "hover",
-    "component"
+    "scroll",
+    "gyroscope",
+    "audio"
   ]
 }
