@@ -12,7 +12,7 @@ export default function throttle(callback, delay, type) {
       newDelay = context.duration > 1000 ? delay : context.duration / 10;
     }
 
-    const now = (new Date()).getTime();
+    const now = Date.now();
     // eslint-disable-next-line prefer-rest-params
     const args = arguments;
     if (last && now < last + newDelay) {
