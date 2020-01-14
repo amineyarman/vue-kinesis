@@ -473,12 +473,12 @@ var component = Object(componentNormalizer["a" /* default */])(
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e8b23560-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/kinesis-container.vue?vue&type=template&id=05ec6e6e&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e8b23560-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/kinesis-container.vue?vue&type=template&id=19f78443&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"component",style:(_vm.style),on:{"mousemove":function($event){$event.stopPropagation();return _vm.handleMovement($event)},"mouseenter":_vm.handleMovementStart,"mouseleave":_vm.handleMovementStop,"click":_vm.handleClick}},[_vm._t("default"),(_vm.audio)?_c('audio',{ref:"audio",attrs:{"type":"audio/mpeg"},on:{"ended":_vm.ended}},[_c('source',{attrs:{"src":_vm.audio}})]):_vm._e()],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/kinesis-container.vue?vue&type=template&id=05ec6e6e&
+// CONCATENATED MODULE: ./src/components/kinesis-container.vue?vue&type=template&id=19f78443&
 
 // EXTERNAL MODULE: ./src/utils/inViewport.js
 var inViewport = __webpack_require__("234f");
@@ -549,7 +549,7 @@ var es6_typed_uint8_array = __webpack_require__("34ef");
     },
     stop: function stop() {
       this.isPlaying = false;
-      this.audioRef.stop();
+      this.audioRef.pause();
     },
     ended: function ended() {
       this.isPlaying = false;
@@ -608,59 +608,14 @@ var es6_typed_uint8_array = __webpack_require__("34ef");
     var _this = this;
 
     var context = {};
-    Object.defineProperty(context, 'audioData', {
-      enumerable: true,
-      get: function get() {
-        return _this.audioData;
-      }
-    });
-    Object.defineProperty(context, 'cycleMovement', {
-      enumerable: true,
-      get: function get() {
-        return _this.cycleMovement;
-      }
-    });
-    Object.defineProperty(context, 'duration', {
-      enumerable: true,
-      get: function get() {
-        return _this.duration;
-      }
-    });
-    Object.defineProperty(context, 'easing', {
-      enumerable: true,
-      get: function get() {
-        return _this.easing;
-      }
-    });
-    Object.defineProperty(context, 'event', {
-      enumerable: true,
-      get: function get() {
-        return _this.event;
-      }
-    });
-    Object.defineProperty(context, 'isMoving', {
-      enumerable: true,
-      get: function get() {
-        return _this.isMoving;
-      }
-    });
-    Object.defineProperty(context, 'movement', {
-      enumerable: true,
-      get: function get() {
-        return _this.movement;
-      }
-    });
-    Object.defineProperty(context, 'orientation', {
-      enumerable: true,
-      get: function get() {
-        return _this.orientation;
-      }
-    });
-    Object.defineProperty(context, 'scrollPosition', {
-      enumerable: true,
-      get: function get() {
-        return _this.scrollPosition;
-      }
+    var providedProps = ['audioData', 'cycleMovement', 'duration', 'easing', 'event', 'isMoving', 'movement', 'orientation', 'scrollPosition'];
+    providedProps.forEach(function (prop) {
+      return Object.defineProperty(context, prop, {
+        enumerable: true,
+        get: function get() {
+          return _this[prop];
+        }
+      });
     });
     return {
       context: context
@@ -1662,12 +1617,12 @@ function isTouch() {
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e8b23560-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/kinesis-element.vue?vue&type=template&id=29bd8390&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e8b23560-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/kinesis-element.vue?vue&type=template&id=7144e75d&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"component",style:(Object.assign({}, _vm.transform, _vm.transformParameters))},[_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/kinesis-element.vue?vue&type=template&id=29bd8390&
+// CONCATENATED MODULE: ./src/components/kinesis-element.vue?vue&type=template&id=7144e75d&
 
 // EXTERNAL MODULE: ./src/utils/isTouch.js
 var utils_isTouch = __webpack_require__("5623");
@@ -1725,7 +1680,6 @@ var transform_mixin = __webpack_require__("3879");
     transformMovement: function transformMovement() {
       var context = this.context;
       if (!context.isMoving && context.event === 'move') return {};
-      var transform;
       var movementX;
       var movementY;
       var eventTrigger = context.event;
@@ -1780,7 +1734,7 @@ var transform_mixin = __webpack_require__("3879");
 
       var transformType = this.type;
       transformType = transformType === 'scaleX' || transformType === 'scaleY' ? 'scale' : transformType;
-      transform = this.transformSwitch(transformType, movementX, movementY, this.strength);
+      var transform = this.transformSwitch(transformType, movementX, movementY, this.strength);
       return {
         transform: transform
       };
@@ -2306,30 +2260,6 @@ module.exports = exporter;
 
 
 
- // export function install(Vue) {
-//   if (install.installed) return;
-//   install.installed = true;
-//   Vue.component('kinesis-container', KinesisContainer);
-//   Vue.component('kinesis-element', KinesisElement);
-//   Vue.component('kinesis-audio', KinesisAudio);
-//   Vue.component('kinesis-scroll', KinesisScroll);
-//   Vue.component('kinesis-distance', KinesisDistance);
-// }
-// const plugin = {
-//   install,
-// };
-// let GlobalVue = null;
-// if (typeof window !== 'undefined') {
-//   GlobalVue = window.Vue;
-// } else if (typeof global !== 'undefined') {
-//   GlobalVue = global.Vue;
-// }
-// if (GlobalVue) {
-//   GlobalVue.use(plugin);
-// }
-// export {
-//   KinesisContainer, KinesisElement, KinesisScroll, KinesisAudio, KinesisDistance,
-// };
 
 
 
@@ -2846,7 +2776,7 @@ function throttle(callback, delay, type) {
       newDelay = context.duration > 1000 ? delay : context.duration / 10;
     }
 
-    var now = +new Date(); // eslint-disable-next-line prefer-rest-params
+    var now = Date.now(); // eslint-disable-next-line prefer-rest-params
 
     var args = arguments;
 

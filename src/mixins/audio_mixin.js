@@ -45,7 +45,7 @@ export default {
     },
     stop() {
       this.isPlaying = false;
-      this.audioRef.stop();
+      this.audioRef.pause();
     },
     ended() {
       this.isPlaying = false;

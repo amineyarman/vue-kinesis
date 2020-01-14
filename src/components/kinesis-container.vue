@@ -37,14 +37,12 @@ export default {
       'movement',
       'orientation',
       'scrollPosition',
-    ]
+    ];
 
-    providedProps.forEach(prop => {
-      return Object.defineProperty(context, prop, {
-        enumerable: true,
-        get: () => this[prop],
-      });
-    });
+    providedProps.forEach(prop => Object.defineProperty(context, prop, {
+      enumerable: true,
+      get: () => this[prop],
+    }));
 
     return { context };
   },
