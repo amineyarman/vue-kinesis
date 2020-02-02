@@ -1,6 +1,6 @@
 {
   "name": "vue-kinesis",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "licence": "MIT",
   "author": {
     "name": "Amine Bouyarmane",
@@ -10,6 +10,7 @@
     "type" : "git",
     "url" : "https://github.com/Aminerman/vue-kinesis"
   },
+  "description": "Easily create complexe interactive animations with Vue.js",
   "scripts": {
     "build-bundle": "vue-cli-service build --no-clean --target lib --name vue-kinesis src/index.js",
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
