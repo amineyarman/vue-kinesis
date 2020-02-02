@@ -47,9 +47,6 @@ export default {
       this.isPlaying = false;
       this.audioRef.pause();
     },
-    ended() {
-      this.isPlaying = false;
-    },
     handleAudio() {
       const { audio } = this.$refs;
       this.audioRef = audio;

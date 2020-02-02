@@ -8,7 +8,7 @@
     :style="style"
   >
     <slot></slot>
-    <audio v-if="audio" type="audio/mpeg" @ended="ended" ref="audio">
+    <audio v-if="audio" type="audio/mpeg" @ended="stop" ref="audio">
       <source :src="audio" />
     </audio>
   </component>
@@ -182,7 +182,10 @@ export default {
       const y = ((yPos - shape.top) * (Math.PI * 2)) / height;
 
       this.cycleMovement = {
-        x, y, width, height,
+        x,
+        y,
+        width,
+        height,
       };
     },
     handleScroll: throttle(
