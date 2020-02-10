@@ -1,23 +1,19 @@
 {
   "name": "vue-kinesis",
   "version": "1.0.5",
-  "licence": "MIT",
+  "description": "Easily create complexe interactive animations with Vue.js",
   "author": {
     "name": "Amine Bouyarmane",
     "email": "amine.bouyarmane@gmail.com"
   },
-  "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Aminerman/vue-kinesis"
-  },
-  "description": "Easily create complexe interactive animations with Vue.js",
   "scripts": {
-    "build-bundle": "vue-cli-service build --no-clean --target lib --name vue-kinesis src/index.js",
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
-    "build:umd": "rollup --config rollup.config.js --format umd --file dist/vue-kinesis.umd.js",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint",
+    "build-bundle": "vue-cli-service build --no-clean --target lib --name vue-kinesis src/index.js",
     "build:es": "rollup --config rollup.config.js --format es --file dist/vue-kinesis.esm.js",
-    "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/vue-kinesis.min.js",
-    "lint": "vue-cli-service lint"
+    "build:umd": "rollup --config rollup.config.js --format umd --file dist/vue-kinesis.umd.js",
+    "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/vue-kinesis.min.js"
   },
   "main": "./dist/vue-kinesis.umd.js",
   "module": "dist/vue-kinesis.esm.js",
@@ -37,8 +33,10 @@
     "@rollup/plugin-commonjs": "^11.0.0",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-plugin-unit-jest": "^4.2.2",
     "@vue/cli-service": "^3.11.0",
     "@vue/eslint-config-airbnb": "^4.0.0",
+    "@vue/test-utils": "1.0.0-beta.31",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
@@ -61,7 +59,18 @@
     "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
-    }
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
   "postcss": {
     "plugins": {
@@ -75,12 +84,6 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
-  "lint-staged": {
-    "*.{js,vue}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
-  },
   "keywords": [
     "frontend",
     "animation",
@@ -93,5 +96,16 @@
     "scroll",
     "gyroscope",
     "audio"
-  ]
+  ],
+  "licence": "MIT",
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aminerman/vue-kinesis"
+  }
 }
