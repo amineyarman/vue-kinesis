@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 export default {
   methods: {
     transformSwitch(type, x, y, s) {

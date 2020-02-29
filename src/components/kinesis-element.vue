@@ -8,6 +8,9 @@
 import isTouch from '../utils/isTouch';
 import motionMixin from '../mixins/motion_mixin';
 import transformMixin from '../mixins/transform_mixin';
+import elementMovement from '../utils/elementMovement';
+import clamp from '../utils/clamp';
+import cyclicMovement from '../utils/cyclicMovement';
 
 export default {
   name: 'KinesisElement',
@@ -22,6 +25,9 @@ export default {
   computed: {
     transform() {
       return this.transformMovement();
+    },
+    getContext() {
+      return this.context;
     },
     transformParameters() {
       return {
@@ -48,61 +54,76 @@ export default {
 
       if (!context.isMoving && context.event === 'move') return {};
 
-      let movementX;
-      let movementY;
+      let movementX; let movementY;
 
       const eventTrigger = context.event;
 
       const strength = this.strengthManager();
 
       if (this.cycle <= 0) {
-        const { x, y } = !this.isTouch ? context.movement : context.orientation;
+        const { x, y } = elementMovement({
+          ...context.movement,
+          originX: this.originX,
+          originY: this.originY,
+          strength,
+        });
 
         const isScroll = eventTrigger === 'scroll';
-
         if (!isScroll) {
-          const originX = this.isTouch ? 0 : this.originX;
-          const originY = this.isTouch ? 0 : this.originY;
-
-          movementX = this.axis === 'y' ? 0 : (x - originX / 50) * strength;
-          movementY = this.axis === 'x' ? 0 : (y - originY / 50) * strength;
+          movementX = this.axis === 'y' ? 0 : clamp(x, this.minX, this.maxX);
+          movementY = this.axis === 'x' ? 0 : clamp(y, this.minY, this.maxY);
         }
 
         if (isScroll) {
-          const scrollMovement = context.scrollPosition * strength;
+          const scrollMovement = context.movement.y * strength;
 
           movementX = this.axis === 'x' ? scrollMovement : 0;
           movementY = this.axis === 'y' || !this.axis ? scrollMovement : 0;
         }
-
-        if (this.maxX) {
-          movementX = Math.min(movementX, this.maxX);
-        }
-        if (this.minX) {
-          movementX = Math.max(movementX, this.minX);
-        }
-        if (this.maxY) {
-          movementY = Math.min(movementY, this.maxY);
-        }
-        if (this.minY) {
-          movementY = Math.max(movementY, this.minY);
-        }
       } else if (this.cycle > 0) {
-        const {
-          x, y, width, height,
-        } = context.cycleMovement;
-        const cycleX = width * Math.sin(x * this.cycle);
-        const cycleY = height * Math.sin(y * this.cycle);
+        const { shape, eventData } = context;
+        if (shape) {
+          const cycleX = this.axis === 'x'
+            ? cyclicMovement({
+              referencePosition:
+                    eventTrigger === 'scroll' ? 0 : eventData.x,
+              elementPosition: shape.left,
+              spanningRange:
+                    eventTrigger === 'scroll' ? window.innerWidth : shape.width,
+              cycles: this.cycle,
+            })
+            : 0;
+          const cycleY = this.axis === 'y' || !this.axis
+            ? cyclicMovement({
+              referencePosition:
+                    eventTrigger === 'scroll' ? 0 : eventData.y,
+              elementPosition: shape.top,
+              spanningRange:
+                    eventTrigger === 'scroll'
+                      ? window.innerHeight
+                      : shape.height,
+              cycles: this.cycle,
+            })
+            : 0;
 
-        movementX = this.axis === 'x' ? (cycleX / (width / 2)) * strength : 0;
-        movementY = this.axis === 'y' || !this.axis ? (cycleY / (height / 2)) * strength : 0;
+          movementX = cycleX * strength;
+          movementY = cycleY * strength;
+        }
       }
 
       let transformType = this.type;
 
-      transformType = transformType === 'scaleX' || transformType === 'scaleY' ? 'scale' : transformType;
+      transformType = transformType === 'scaleX' || transformType === 'scaleY'
+        ? 'scale'
+        : transformType;
 
-      const transform = this.transformSwitch(transformType, movementX, movementY, this.strength);
+      const transform = this.transformSwitch(
+        transformType,
+        movementX,
+        movementY,
+        this.strength,
+      );
+
       return { transform };
     },
   },

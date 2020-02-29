@@ -121,6 +121,7 @@ export default {
     getDistance(x1, x2, y1, y2) {
       return Math.floor(Math.hypot(x2 - x1, y2 - y1));
     },
+    // eslint-disable-next-line func-names
     handleMovement: throttle(function (event) {
       window.addEventListener('mousemove', this.handleMovement);
 

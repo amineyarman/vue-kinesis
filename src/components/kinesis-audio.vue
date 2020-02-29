@@ -54,6 +54,7 @@ export default {
       let amplitude; let
         transform;
 
+      // eslint-disable-next-line default-case
       switch (transformType) {
         case 'translate':
           amplitude = audioData ? audioData[0][this.audioIndex] : 0;
@@ -64,6 +65,7 @@ export default {
           transform = `rotate3d(0,0,1,${(amplitude * strength) / 10}deg)`;
           break;
         case 'scale':
+          // eslint-disable-next-line no-nested-ternary
           amplitude = audioData
             ? audioData[0][this.audioIndex] / strength < 1
               ? 1
@@ -73,6 +75,7 @@ export default {
           break;
       }
 
+      // eslint-disable-next-line consistent-return
       return { transform };
     },
   },

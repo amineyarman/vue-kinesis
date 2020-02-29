@@ -50,6 +50,7 @@ export default {
       };
     },
     handleScroll: throttle(
+      // eslint-disable-next-line func-names
       function () {
         if (!this.active) return;
         const shape = this.$el.getBoundingClientRect();
@@ -62,8 +63,7 @@ export default {
       'scroll',
     ),
     transformBehavior(shape) {
-      let movementX; let movementY; let
-        transform;
+      let movementX; let movementY;
       const scrollPosition = (shape.top - window.innerHeight) / (shape.height + window.innerHeight);
       if (this.cycle <= 0) {
         const scrollMovement = scrollPosition * this.strength;
@@ -108,7 +108,7 @@ export default {
         ? 'scale'
         : transformType;
 
-      transform = this.transformSwitch(
+      const transform = this.transformSwitch(
         transformType,
         movementX,
         movementY,
