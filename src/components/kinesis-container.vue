@@ -24,6 +24,7 @@ import mouseMovement from '../utils/mouseMovement';
 import orientationElement from '../utils/orientationElement';
 import scrollMovement from '../utils/scrollMovement';
 import getCoordinates from '../utils/getCoordinates';
+import isTouch from '../utils/isTouch';
 
 export default {
   name: 'KinesisContainer',
@@ -73,16 +74,20 @@ export default {
     handleMovement: throttle(function (event) {
       if (!this.active) return;
 
+      this.isMoving = true;
+
       this.shape = this.$el.getBoundingClientRect();
       const isInViewport = inViewport(this.shape);
 
-      if (this.event === 'move' && this.isMoving) {
+      if (this.event === 'move' && this.isMoving && !isTouch()) {
         this.movement = mouseMovement({
           target: this.shape,
           event,
         });
         this.eventData = getCoordinates(event.clientX, event.clientY);
-      } else if (this.event === 'orientation' && isInViewport) {
+      } else if ((this.event === 'orientation'
+          || (this.event === 'move' && isTouch()))
+        && isInViewport) {
         this.movement = orientationElement({
           target: this.shape,
           event,

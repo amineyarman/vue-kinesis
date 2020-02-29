@@ -1,3 +1,5 @@
+import isTouch from '../utils/isTouch';
+
 export default {
   props: {
     event: {
@@ -10,6 +12,7 @@ export default {
       eventMap: {
         orientation: 'deviceorientation',
         scroll: 'scroll',
+        move: isTouch() ? 'deviceorientation' : null,
       },
     };
   },
