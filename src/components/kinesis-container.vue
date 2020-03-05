@@ -1,7 +1,7 @@
 <template>
   <component
     :is="tag"
-    @mousemove.stop="handleMovement"
+    @mousemove="handleMovement"
     @mouseenter="handleMovementStart"
     @mouseleave="handleMovementStop"
     :style="style"
