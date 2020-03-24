@@ -75,7 +75,14 @@ export default {
         }
 
         if (isScroll) {
-          const scrollMovement = context.movement.y * strength;
+          const scrollMovement = elementMovement({
+            x: context.movement.x,
+            y: context.movement.y,
+            originX: this.originX,
+            originY: this.originY,
+            strength,
+            event: context.event,
+          }).y;
 
           movementX = this.axis === 'x' ? scrollMovement : 0;
           movementY = this.axis === 'y' || !this.axis ? scrollMovement : 0;

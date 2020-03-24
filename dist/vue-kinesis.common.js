@@ -1775,12 +1775,12 @@ function isTouch() {
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"69ce83fa-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/kinesis-element.vue?vue&type=template&id=abf5b1c6&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"69ce83fa-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/kinesis-element.vue?vue&type=template&id=60c56e64&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"component",style:(Object.assign({}, _vm.transform, _vm.transformParameters))},[_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/kinesis-element.vue?vue&type=template&id=abf5b1c6&
+// CONCATENATED MODULE: ./src/components/kinesis-element.vue?vue&type=template&id=60c56e64&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js
 var es7_object_get_own_property_descriptors = __webpack_require__("8e6e");
@@ -1827,10 +1827,17 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
       target = action.target,
       _action$originX = action.originX,
       originX = _action$originX === void 0 ? 50 : _action$originX,
-      _action$originY = action.originY,
-      originY = _action$originY === void 0 ? 50 : _action$originY,
       _action$strength = action.strength,
-      strength = _action$strength === void 0 ? 10 : _action$strength;
+      strength = _action$strength === void 0 ? 10 : _action$strength,
+      _action$event = action.event,
+      event = _action$event === void 0 ? null : _action$event;
+  var _action$originY = action.originY,
+      originY = _action$originY === void 0 ? 50 : _action$originY;
+
+  if (event === 'scroll') {
+    originY = -originY / 2;
+  }
+
   var movementX = (x - originX / 50) * strength;
   var movementY = (y - originY / 50) * strength;
   return _objectSpread({}, Object(getCoordinates["a" /* default */])(movementX, movementY), {
@@ -1937,7 +1944,14 @@ function kinesis_elementvue_type_script_lang_js_objectSpread(target) { for (var 
         }
 
         if (isScroll) {
-          var scrollMovement = context.movement.y * strength;
+          var scrollMovement = elementMovement({
+            x: context.movement.x,
+            y: context.movement.y,
+            originX: this.originX,
+            originY: this.originY,
+            strength: strength,
+            event: context.event
+          }).y;
           movementX = this.axis === 'x' ? scrollMovement : 0;
           movementY = this.axis === 'y' || !this.axis ? scrollMovement : 0;
         }
