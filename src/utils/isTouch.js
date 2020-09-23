@@ -1,3 +1,7 @@
 export default function isTouch() {
-  return /Mobi|Android/i.test(navigator.userAgent);
+  try {
+    return /Mobi|Android/i.test(navigator.userAgent);
+  } catch (e) {
+    return false;
+  }
 }
