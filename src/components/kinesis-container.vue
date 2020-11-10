@@ -74,8 +74,6 @@ export default {
     handleMovement: throttle(function (event) {
       if (!this.active) return;
 
-      this.isMoving = true;
-
       this.shape = this.$el.getBoundingClientRect();
       const isInViewport = inViewport(this.shape);
 

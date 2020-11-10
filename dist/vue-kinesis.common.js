@@ -519,12 +519,12 @@ module.exports = function (it) {
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"39fc178b-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/kinesis-container.vue?vue&type=template&id=64769732&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"39fc178b-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/kinesis-container.vue?vue&type=template&id=3631cdc4&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.tag,{tag:"component",style:(_vm.style),on:{"mousemove":_vm.handleMovement,"mouseenter":_vm.handleMovementStart,"mouseleave":_vm.handleMovementStop}},[_vm._t("default"),(_vm.audio)?_c('audio',{ref:"audio",attrs:{"type":"audio/mpeg"},on:{"ended":_vm.stop}},[_c('source',{attrs:{"src":_vm.audio}})]):_vm._e()],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/kinesis-container.vue?vue&type=template&id=64769732&
+// CONCATENATED MODULE: ./src/components/kinesis-container.vue?vue&type=template&id=3631cdc4&
 
 // EXTERNAL MODULE: ./src/utils/inViewport.js
 var inViewport = __webpack_require__("234f");
@@ -825,7 +825,6 @@ function scrollMovement_objectSpread(target) { for (var i = 1; i < arguments.len
     // eslint-disable-next-line func-names
     handleMovement: Object(throttle["a" /* default */])(function (event) {
       if (!this.active) return;
-      this.isMoving = true;
       this.shape = this.$el.getBoundingClientRect();
       var isInViewport = Object(inViewport["a" /* default */])(this.shape);
 
