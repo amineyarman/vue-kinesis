@@ -66,7 +66,7 @@ export default {
   mounted() {
     this.addEvents();
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.removeEvents();
   },
   methods: {

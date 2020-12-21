@@ -1,111 +1,47 @@
 {
   "name": "vue-kinesis",
-  "version": "1.1.7",
-  "description": "Easily create complexe interactive animations with Vue.js",
-  "author": {
-    "name": "Amine Bouyarmane",
-    "email": "amine.bouyarmane@gmail.com"
-  },
-  "scripts": {
-    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
-    "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint",
-    "build-bundle": "vue-cli-service build --no-clean --target lib --name vue-kinesis src/index.js",
-    "build:es": "rollup --config rollup.config.js --format es --file dist/vue-kinesis.esm.js",
-    "build:umd": "rollup --config rollup.config.js --format umd --file dist/vue-kinesis.umd.js",
-    "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/vue-kinesis.min.js"
-  },
-  "main": "./dist/vue-kinesis.umd.js",
+  "version": "2.0.0",
+  "description": "",
+  "main": "dist/vue-kinesis.ssr.js",
+  "browser": "dist/vue-kinesis.esm.js",
   "module": "dist/vue-kinesis.esm.js",
   "unpkg": "dist/vue-kinesis.min.js",
   "files": [
     "dist/*",
-    "src/*",
-    "*.json",
-    "*.js"
+    "src/**/*.vue"
   ],
-  "dependencies": {
-    "core-js": "^2.6.5",
-    "vue": "^2.6.10"
+  "sideEffects": false,
+  "scripts": {
+    "serve": "vue-cli-service serve dev/serve.js",
+    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
   },
+  "dependencies": {},
   "devDependencies": {
-    "@rollup/plugin-buble": "^0.21.0",
-    "@rollup/plugin-commonjs": "^11.0.0",
-    "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-eslint": "^3.11.0",
-    "@vue/cli-plugin-unit-jest": "^4.2.2",
-    "@vue/cli-service": "^3.11.0",
-    "@vue/eslint-config-airbnb": "^4.0.0",
-    "@vue/test-utils": "1.0.0-beta.31",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "lint-staged": "^8.1.5",
-    "rollup": "^1.27.14",
-    "rollup-plugin-vue": "^5.1.1",
-    "sass": "^1.18.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.10"
+    "@babel/core": "^7.12.0",
+    "@babel/preset-env": "^7.12.0",
+    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-replace": "^2.3.3",
+    "@vue/cli-plugin-babel": "^4.5.7",
+    "@vue/cli-service": "^4.5.7",
+    "@vue/compiler-sfc": "^3.0.0",
+    "cross-env": "^7.0.2",
+    "minimist": "^1.2.5",
+    "rollup": "^2.30.0",
+    "rollup-plugin-postcss": "^3.1.8",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-vue": "^6.0.0-beta.10",
+    "vue": "^3.0.0"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/airbnb"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/__tests__/*.{j,t}s?(x)",
-          "**/tests/unit/**/*.spec.{j,t}s?(x)"
-        ],
-        "env": {
-          "jest": true
-        }
-      }
-    ]
+  "peerDependencies": {
+    "vue": "^3.0.0"
   },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ],
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "keywords": [
-    "frontend",
-    "animation",
-    "interaction",
-    "vue",
-    "vue.js",
-    "parallax",
-    "mouse",
-    "hover",
-    "scroll",
-    "gyroscope",
-    "audio"
-  ],
-  "licence": "MIT",
-  "lint-staged": {
-    "*.{js,vue}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Aminerman/vue-kinesis"
+  "engines": {
+    "node": ">=10"
   }
 }
