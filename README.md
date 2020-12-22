@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/vue-kinesis.svg)](https://img.shields.io/npm/v/vue-kinesis.svg) 
 [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
+[![vue2](https://img.shields.io/badge/vue-3.x-brightgreen.svg)](https://vuejs.org/)
 
 Easy to use Vue.js components for creating interactive animations
 
@@ -9,14 +10,34 @@ Easy to use Vue.js components for creating interactive animations
 
 [Kinesis Demo](https://aminerman.com/kinesis/)
 
+# Installation Vue3
 
-# Installation
+```
+npm install --save vue-kinesis@next
+```
+
+## Default import Vue3
+
+Install all the components:
+
+```javascript
+import { createApp } from "vue";
+import App from "./App.vue";
+import VueKinesis from "vue-kinesis";
+
+const app = createApp(App);
+app.use(VueKinesis);
+
+app.mount("#app");
+```
+
+# Installation Vue2
 
 ```
 npm install --save vue-kinesis
 ```
 
-## Default import
+## Default import Vue2
 
 Install all the components:
 

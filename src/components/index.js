@@ -5,17 +5,21 @@ import KinesisElement from './kinesis-element.vue';
 import KinesisScroll from './kinesis-scroll.vue';
 
 const Plugin = {
-  install(Vue) {
-    Vue.component(KinesisAudio.name, KinesisAudio);
+  install(vue) {
+    vue.component(KinesisAudio.name, KinesisAudio);
+    vue.component(KinesisContainer.name, KinesisContainer);
+    vue.component(KinesisDistance.name, KinesisDistance);
+    vue.component(KinesisElement.name, KinesisElement);
+    vue.component(KinesisScroll.name, KinesisScroll);
   },
 };
 
 let GlobalVue = null;
 
 if (typeof window !== 'undefined') {
-  GlobalVue = window.Vue;
+  GlobalVue = window.vue;
 } else if (typeof global !== 'undefined') {
-  GlobalVue = global.Vue;
+  GlobalVue = global.vue;
 }
 
 if (GlobalVue) {
