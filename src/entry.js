@@ -7,21 +7,21 @@ import KinesisDistance from './components/kinesis-distance.vue';
 
 import * as components from './components/index';
 
-const install = function (Vue) {
+const install = function (vue) {
   if (install.installed) {
     return;
   }
   install.installed = true;
 
   for (const name in components) {
-    Vue.use(components[name]);
+    vue.use(components[name]);
   }
 
-  Vue.component('kinesis-container', KinesisContainer);
-  Vue.component('kinesis-element', KinesisElement);
-  Vue.component('kinesis-audio', KinesisAudio);
-  Vue.component('kinesis-scroll', KinesisScroll);
-  Vue.component('kinesis-distance', KinesisDistance);
+  vue.component('kinesis-container', KinesisContainer);
+  vue.component('kinesis-element', KinesisElement);
+  vue.component('kinesis-audio', KinesisAudio);
+  vue.component('kinesis-scroll', KinesisScroll);
+  vue.component('kinesis-distance', KinesisDistance);
 };
 
 const Plugin = { install };
@@ -29,9 +29,9 @@ const Plugin = { install };
 let GlobalVue = null;
 
 if (typeof window !== 'undefined') {
-  GlobalVue = window.Vue;
+  GlobalVue = window.vue;
 } else if (typeof global !== 'undefined') {
-  GlobalVue = global.Vue;
+  GlobalVue = global.vue;
 }
 
 if (GlobalVue) {
