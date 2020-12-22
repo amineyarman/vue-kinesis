@@ -1,7 +1,11 @@
 {
   "name": "vue-kinesis",
   "version": "2.0.1",
-  "description": "",
+  "description": "Easily create complexe interactive animations with Vue.js",
+  "author": {
+    "name": "Amine Bouyarmane",
+    "email": "amine.bouyarmane@gmail.com"
+  },
   "main": "dist/vue-kinesis.ssr.js",
   "browser": "dist/vue-kinesis.esm.js",
   "module": "dist/vue-kinesis.esm.js",
