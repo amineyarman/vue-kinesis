@@ -10,13 +10,13 @@ Easy to use Vue.js components for creating interactive animations
 
 [Kinesis Demo](https://aminerman.com/kinesis/)
 
-# Installation Vue3
+# Vue3 - Installation 
 
 ```
 npm install --save vue-kinesis@next
 ```
 
-## Default import Vue3
+## Vue3 - Default import 
 
 Install all the components:
 
@@ -31,13 +31,13 @@ app.use(VueKinesis);
 app.mount("#app");
 ```
 
-# Installation Vue2
+# Vue2 - Installation
 
 ```
 npm install --save vue-kinesis
 ```
 
-## Default import Vue2
+## Vue2 - Default import
 
 Install all the components:
 
