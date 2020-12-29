@@ -6,6 +6,10 @@
     "name": "Amine Bouyarmane",
     "email": "amine.bouyarmane@gmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aminerman/vue-kinesis"
+  },
   "main": "dist/vue-kinesis.ssr.js",
   "browser": "dist/vue-kinesis.esm.js",
   "module": "dist/vue-kinesis.esm.js",
@@ -47,5 +51,18 @@
   },
   "engines": {
     "node": ">=10"
-  }
+  },
+  "keywords": [
+    "frontend",
+    "animation",
+    "interaction",
+    "vue",
+    "vue.js",
+    "parallax",
+    "mouse",
+    "hover",
+    "scroll",
+    "gyroscope",
+    "audio"
+  ]
 }
