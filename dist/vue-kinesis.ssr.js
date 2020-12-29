@@ -315,7 +315,7 @@ var script = {
     handleMovement: throttle(function (event) {
       // if (!this.active) return;
       if (!this.isMoving && !this.leftOnce) {
-        //fixes the specific case when mouseenter didn't trigger on page refresh
+        // fixes the specific case when mouseenter didn't trigger on page refresh
         this.isMoving = true;
       }
 
@@ -341,8 +341,8 @@ var script = {
       this.isMoving = true;
     },
     handleMovementStop: function handleMovementStop() {
-      this.leftOnce = true; //fixes the specific case when mouseenter didn't trigger on page refresh
-
+      // fixes the specific case when mouseenter didn't trigger on page refresh
+      this.leftOnce = true;
       this.isMoving = false;
     }
   }
@@ -462,7 +462,7 @@ var __vue_inject_styles__ = undefined;
 var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-3dc53c70";
+var __vue_module_identifier__ = "data-v-2d85bf0a";
 /* functional template */
 
 var __vue_is_functional_template__ = false;

@@ -42,7 +42,7 @@ export default {
       'shape',
     ];
 
-    providedProps.forEach(prop => Object.defineProperty(context, prop, {
+    providedProps.forEach((prop) => Object.defineProperty(context, prop, {
       enumerable: true,
       get: () => this[prop],
     }));
@@ -75,9 +75,9 @@ export default {
     handleMovement: throttle(function (event) {
       // if (!this.active) return;
 
-      if(!this.isMoving && !this.leftOnce) {
-        //fixes the specific case when mouseenter didn't trigger on page refresh
-        this.isMoving = true
+      if (!this.isMoving && !this.leftOnce) {
+        // fixes the specific case when mouseenter didn't trigger on page refresh
+        this.isMoving = true;
       }
 
       this.shape = this.$el.getBoundingClientRect();
@@ -108,7 +108,8 @@ export default {
       this.isMoving = true;
     },
     handleMovementStop() {
-      this.leftOnce = true; //fixes the specific case when mouseenter didn't trigger on page refresh
+      // fixes the specific case when mouseenter didn't trigger on page refresh
+      this.leftOnce = true;
       this.isMoving = false;
     },
   },

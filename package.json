@@ -6,21 +6,22 @@
     "name": "Amine Bouyarmane",
     "email": "amine.bouyarmane@gmail.com"
   },
+  "scripts": {
+    "serve": "vue-cli-service serve dev/serve.js",
+    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "lint": "vue-cli-service lint",
+    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
+    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
+  },
   "main": "dist/vue-kinesis.ssr.js",
-  "browser": "dist/vue-kinesis.esm.js",
   "module": "dist/vue-kinesis.esm.js",
+  "browser": "dist/vue-kinesis.esm.js",
   "unpkg": "dist/vue-kinesis.min.js",
   "files": [
     "dist/*",
     "src/**/*.vue"
   ],
-  "scripts": {
-    "serve": "vue-cli-service serve dev/serve.js",
-    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
-    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
-    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
-  },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -29,8 +30,15 @@
     "@rollup/plugin-commonjs": "^11.1.0",
     "@rollup/plugin-replace": "^2.3.2",
     "@vue/cli-plugin-babel": "^4.3.1",
+    "@vue/cli-plugin-eslint": "^4.5.9",
     "@vue/cli-service": "^4.3.1",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "lint-staged": "^9.5.0",
     "minimist": "^1.2.5",
     "rollup": "^2.7.3",
     "rollup-plugin-babel": "^4.4.0",
@@ -45,11 +53,9 @@
   "engines": {
     "node": ">=10"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Aminerman/vue-kinesis"
+  "gitHooks": {
+    "pre-commit": "lint-staged"
   },
-  "licence": "MIT",
   "keywords": [
     "frontend",
     "animation",
@@ -62,5 +68,16 @@
     "scroll",
     "gyroscope",
     "audio"
-  ]
+  ],
+  "licence": "MIT",
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aminerman/vue-kinesis"
+  }
 }
