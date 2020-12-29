@@ -421,12 +421,12 @@ function scrollMovement (target) {
 }
 
 var script$1 = {
-  name: 'KinesisContainer',
+  name: "KinesisContainer",
   mixins: [baseMixin, perspectiveMixin, audioMixin, containerEvents],
 
   provide() {
     const context = {};
-    const providedProps = ['audioData', 'duration', 'easing', 'event', 'eventData', 'isMoving', 'movement', 'shape'];
+    const providedProps = ["audioData", "duration", "easing", "event", "eventData", "isMoving", "movement", "shape"];
     providedProps.forEach(prop => Object.defineProperty(context, prop, {
       enumerable: true,
       get: () => this[prop]
@@ -444,6 +444,7 @@ var script$1 = {
       },
       isMoving: false,
       shape: null,
+      leftOnce: false,
       eventData: {
         x: 0,
         y: 0
@@ -462,22 +463,27 @@ var script$1 = {
   methods: {
     // eslint-disable-next-line func-names
     handleMovement: throttle(function (event) {
-      if (!this.active) return;
+      // if (!this.active) return;
+      if (!this.isMoving && !this.leftOnce) {
+        // fixes the specific case when mouseenter didn't trigger on page refresh
+        this.isMoving = true;
+      }
+
       this.shape = this.$el.getBoundingClientRect();
       const isInViewport = inViewport(this.shape);
 
-      if (this.event === 'move' && this.isMoving && !isTouch()) {
+      if (this.event === "move" && this.isMoving && !isTouch()) {
         this.movement = mouseMovement({
           target: this.shape,
           event
         });
         this.eventData = getCoordinates(event.clientX, event.clientY);
-      } else if ((this.event === 'orientation' || this.event === 'move' && isTouch()) && isInViewport) {
+      } else if ((this.event === "orientation" || this.event === "move" && isTouch()) && isInViewport) {
         this.movement = orientationElement({
           target: this.shape,
           event
         });
-      } else if (this.event === 'scroll' && isInViewport && !!this.shape.height) {
+      } else if (this.event === "scroll" && isInViewport && !!this.shape.height) {
         this.movement = scrollMovement(this.shape);
       }
     }, 100),
@@ -487,6 +493,8 @@ var script$1 = {
     },
 
     handleMovementStop() {
+      // fixes the specific case when mouseenter didn't trigger on page refresh
+      this.leftOnce = true;
       this.isMoving = false;
     }
 

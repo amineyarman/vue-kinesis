@@ -458,13 +458,13 @@ function _nonIterableRest() {
     target: target
   });
 }var script$1 = {
-  name: 'KinesisContainer',
+  name: "KinesisContainer",
   mixins: [baseMixin, perspectiveMixin, audioMixin, containerEvents],
   provide: function provide() {
     var _this = this;
 
     var context = {};
-    var providedProps = ['audioData', 'duration', 'easing', 'event', 'eventData', 'isMoving', 'movement', 'shape'];
+    var providedProps = ["audioData", "duration", "easing", "event", "eventData", "isMoving", "movement", "shape"];
     providedProps.forEach(function (prop) {
       return Object.defineProperty(context, prop, {
         enumerable: true,
@@ -485,6 +485,7 @@ function _nonIterableRest() {
       },
       isMoving: false,
       shape: null,
+      leftOnce: false,
       eventData: {
         x: 0,
         y: 0
@@ -500,22 +501,27 @@ function _nonIterableRest() {
   methods: {
     // eslint-disable-next-line func-names
     handleMovement: throttle(function (event) {
-      if (!this.active) return;
+      // if (!this.active) return;
+      if (!this.isMoving && !this.leftOnce) {
+        // fixes the specific case when mouseenter didn't trigger on page refresh
+        this.isMoving = true;
+      }
+
       this.shape = this.$el.getBoundingClientRect();
       var isInViewport = inViewport(this.shape);
 
-      if (this.event === 'move' && this.isMoving && !isTouch()) {
+      if (this.event === "move" && this.isMoving && !isTouch()) {
         this.movement = mouseMovement({
           target: this.shape,
           event: event
         });
         this.eventData = getCoordinates(event.clientX, event.clientY);
-      } else if ((this.event === 'orientation' || this.event === 'move' && isTouch()) && isInViewport) {
+      } else if ((this.event === "orientation" || this.event === "move" && isTouch()) && isInViewport) {
         this.movement = orientationElement({
           target: this.shape,
           event: event
         });
-      } else if (this.event === 'scroll' && isInViewport && !!this.shape.height) {
+      } else if (this.event === "scroll" && isInViewport && !!this.shape.height) {
         this.movement = scrollMovement(this.shape);
       }
     }, 100),
@@ -523,6 +529,8 @@ function _nonIterableRest() {
       this.isMoving = true;
     },
     handleMovementStop: function handleMovementStop() {
+      // fixes the specific case when mouseenter didn't trigger on page refresh
+      this.leftOnce = true;
       this.isMoving = false;
     }
   }
