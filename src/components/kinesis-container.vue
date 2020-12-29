@@ -55,6 +55,7 @@ export default {
         x: 0,
         y: 0,
       },
+      leftOnce: false,
       isMoving: false,
       shape: null,
       eventData: {
@@ -72,7 +73,12 @@ export default {
   methods: {
     // eslint-disable-next-line func-names
     handleMovement: throttle(function (event) {
-      if (!this.active) return;
+      // if (!this.active) return;
+
+      if(!this.isMoving && !this.leftOnce) {
+        //fixes the specific case when mouseenter didn't trigger on page refresh
+        this.isMoving = true
+      }
 
       this.shape = this.$el.getBoundingClientRect();
       const isInViewport = inViewport(this.shape);
@@ -102,6 +108,7 @@ export default {
       this.isMoving = true;
     },
     handleMovementStop() {
+      this.leftOnce = true; //fixes the specific case when mouseenter didn't trigger on page refresh
       this.isMoving = false;
     },
   },

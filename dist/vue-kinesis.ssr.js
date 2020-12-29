@@ -295,6 +295,7 @@ var script = {
         x: 0,
         y: 0
       },
+      leftOnce: false,
       isMoving: false,
       shape: null,
       eventData: {
@@ -312,7 +313,12 @@ var script = {
   methods: {
     // eslint-disable-next-line func-names
     handleMovement: throttle(function (event) {
-      if (!this.active) return;
+      // if (!this.active) return;
+      if (!this.isMoving && !this.leftOnce) {
+        //fixes the specific case when mouseenter didn't trigger on page refresh
+        this.isMoving = true;
+      }
+
       this.shape = this.$el.getBoundingClientRect();
       var isInViewport = inViewport(this.shape);
 
@@ -335,6 +341,8 @@ var script = {
       this.isMoving = true;
     },
     handleMovementStop: function handleMovementStop() {
+      this.leftOnce = true; //fixes the specific case when mouseenter didn't trigger on page refresh
+
       this.isMoving = false;
     }
   }
@@ -454,7 +462,7 @@ var __vue_inject_styles__ = undefined;
 var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-6729618b";
+var __vue_module_identifier__ = "data-v-3dc53c70";
 /* functional template */
 
 var __vue_is_functional_template__ = false;
