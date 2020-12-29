@@ -1,5 +1,8 @@
 <template>
-  <component :is="tag" :style="{ ...transform, ...transformParameters }">
+  <component
+    :is="tag"
+    :style="{ ...transform, ...transformParameters }"
+  >
     <slot />
   </component>
 </template>

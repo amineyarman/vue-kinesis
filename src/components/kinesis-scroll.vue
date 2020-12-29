@@ -1,7 +1,10 @@
 <template>
-  <component :is="tag" :style="{ ...transform, ...transformParameters }">
-    <slot
-  /></component>
+  <component
+    :is="tag"
+    :style="{ ...transform, ...transformParameters }"
+  >
+    <slot />
+  </component>
 </template>
 
 <script>
@@ -21,12 +24,6 @@ export default {
       transform: {},
     };
   },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll, { passive: true });
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll, { passive: true });
-  },
   computed: {
     transformParameters() {
       return {
@@ -39,6 +36,12 @@ export default {
     transitionDuration() {
       return `${this.duration}ms`;
     },
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll, { passive: true });
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll, { passive: true });
   },
   methods: {
     getCycleMovement(xPos, yPos, width, height, shape) {

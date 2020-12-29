@@ -1,5 +1,8 @@
 <template>
-  <component :is="tag" :style="{ ...transform, ...transformParameters }">
+  <component
+    :is="tag"
+    :style="{ ...transform, ...transformParameters }"
+  >
     <slot />
   </component>
 </template>
@@ -90,12 +93,6 @@ export default {
       throttle: 500,
     };
   },
-  mounted() {
-    window.addEventListener('scroll', this.handleMovement);
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleMovement);
-  },
   computed: {
     style() {
       return { perspective: `${this.perspective}px` };
@@ -112,6 +109,12 @@ export default {
     transitionDuration() {
       return `${this.duration}ms`;
     },
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleMovement);
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleMovement);
   },
   methods: {
     getCoordinates(x, y) {

@@ -1,14 +1,19 @@
 <template>
   <component
     :is="tag"
+    :style="style"
     @mousemove="handleMovement"
     @mouseenter="handleMovementStart"
     @mouseleave="handleMovementStop"
-    :style="style"
   >
-    <slot></slot>
-    <audio v-if="audio" type="audio/mpeg" @ended="stop" ref="audio">
-      <source :src="audio" />
+    <slot />
+    <audio
+      v-if="audio"
+      ref="audio"
+      type="audio/mpeg"
+      @ended="stop"
+    >
+      <source :src="audio">
     </audio>
   </component>
 </template>
