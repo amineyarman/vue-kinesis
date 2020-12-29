@@ -49,5 +49,18 @@
     "type": "git",
     "url": "https://github.com/Aminerman/vue-kinesis"
   },
-  "licence": "MIT"
+  "licence": "MIT",
+  "keywords": [
+    "frontend",
+    "animation",
+    "interaction",
+    "vue",
+    "vue.js",
+    "parallax",
+    "mouse",
+    "hover",
+    "scroll",
+    "gyroscope",
+    "audio"
+  ]
 }
