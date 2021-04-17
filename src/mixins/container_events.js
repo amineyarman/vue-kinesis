@@ -1,4 +1,4 @@
-import isTouch from '../utils/isTouch';
+import isTouch from '../utils/isTouch'
 
 export default {
   props: {
@@ -14,7 +14,7 @@ export default {
         scroll: 'scroll',
         move: isTouch() ? 'deviceorientation' : null,
       },
-    };
+    }
   },
   methods: {
     addEvents() {
@@ -23,7 +23,7 @@ export default {
           this.eventMap[this.event],
           this.handleMovement,
           true,
-        );
+        )
       }
     },
     removeEvents() {
@@ -32,7 +32,7 @@ export default {
           this.eventMap[this.event],
           this.handleMovement,
           true,
-        );
+        )
       }
     },
   },
@@ -43,15 +43,15 @@ export default {
           this.eventMap[newVal],
           this.handleMovement,
           true,
-        );
+        )
       }
       if (this.eventMap[oldVal]) {
         window.addEventListener(
           this.eventMap[oldVal],
           this.handleMovement,
           true,
-        );
+        )
       }
     },
   },
-};
+}
