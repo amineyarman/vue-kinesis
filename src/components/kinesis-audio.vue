@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import motionMixin from '../mixins/motion_mixin';
+import motionMixin from '../mixins/motion_mixin'
 
 export default {
   name: 'KinesisAudio',
@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     transform() {
-      return this.transformAudio();
+      return this.transformAudio()
     },
     transformParameters() {
       return {
@@ -34,53 +34,53 @@ export default {
         transitionDuration: this.transitionDuration,
         transformOrigin: this.transformOrigin,
         transitionTimingFunction: this.transitionTimingFunction,
-      };
+      }
     },
     transitionDuration() {
-      const { duration } = this.context;
-      return `${duration}ms`;
+      const { duration, } = this.context
+      return `${duration}ms`
     },
     transitionTimingFunction() {
-      return this.context.easing;
+      return this.context.easing
     },
   },
   methods: {
     transformAudio() {
-      const { audioData } = this.context;
+      const { audioData, } = this.context
 
-      if (!this.context.audioData) return;
+      if (!this.context.audioData) return
 
-      const transformType = this.type;
+      const transformType = this.type
 
-      const { strength } = this;
+      const { strength, } = this
 
       let amplitude; let
-        transform;
+        transform
 
       // eslint-disable-next-line default-case
       switch (transformType) {
         case 'translate':
-          amplitude = audioData ? audioData[0][this.audioIndex] : 0;
-          transform = `translate3d(${amplitude * strength}px, 0, 0)`;
-          break;
+          amplitude = audioData ? audioData[0][this.audioIndex] : 0
+          transform = `translate3d(${amplitude * strength}px, 0, 0)`
+          break
         case 'rotate':
-          amplitude = audioData ? audioData[0][this.audioIndex] : 0;
-          transform = `rotate3d(0,0,1,${(amplitude * strength) / 10}deg)`;
-          break;
+          amplitude = audioData ? audioData[0][this.audioIndex] : 0
+          transform = `rotate3d(0,0,1,${(amplitude * strength) / 10}deg)`
+          break
         case 'scale':
           // eslint-disable-next-line no-nested-ternary
           amplitude = audioData
             ? audioData[0][this.audioIndex] / strength < 1
               ? 1
               : audioData[0][this.audioIndex] / (strength * 2)
-            : 1;
-          transform = `scale(${amplitude})`;
-          break;
+            : 1
+          transform = `scale(${amplitude})`
+          break
       }
 
       // eslint-disable-next-line consistent-return
-      return { transform };
+      return { transform, }
     },
   },
-};
+}
 </script>
