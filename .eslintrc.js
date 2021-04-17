@@ -37,6 +37,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     'no-unused-vars': 'warn',
+    "consistent-return": "off",
     'vue/no-unused-vars': 'off',
     'vue/require-default-prop': 'off',
     'import/prefer-default-export': 'off',

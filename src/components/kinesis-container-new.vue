@@ -5,8 +5,10 @@ import orientationElement from '../utils/orientationElement'
 import inViewport from '../utils/inViewport'
 import isTouch from '../utils/isTouch'
 import getCoordinates from '../utils/getCoordinates'
+import throttle from '../utils/throttle'
 
 export default {
+  name: 'KinesisContainer',
   props: {
     tag: {
       type: String,
@@ -62,6 +64,11 @@ export default {
         x: 0,
         y: 0,
       },
+      eventMap: {
+        orientation: 'deviceorientation',
+        scroll: 'scroll',
+        move: isTouch() ? 'deviceorientation' : null,
+      },
     }
   },
   computed: {
@@ -103,7 +110,7 @@ export default {
       this.leftOnce = true
       this.isMoving = false
     },
-    handleMovement(event) {
+    handleMovement: throttle(function (event) {
       if (!this.isMoving && !this.leftOnce) {
         // fixes the specific case when mouseenter didn't trigger on page refresh
         this.handleMovementStart()
@@ -125,23 +132,20 @@ export default {
           this.eventData = getCoordinates(event.clientX, event.clientY)
         }
       }
-    },
+    }, 100),
     addEvents() {
-      const { type, } = this.eventActions[this.event]
-      if (type) {
+      if (this.eventMap[this.event]) {
         window.addEventListener(
-          type,
+          this.eventMap[this.event],
           this.handleMovement,
           true,
         )
       }
     },
     removeEvents() {
-      const { type, } = this.eventActions[this.event]
-
-      if (type) {
+      if (this.eventMap[this.event]) {
         window.removeEventListener(
-          type,
+          this.eventMap[this.event],
           this.handleMovement,
           true,
         )

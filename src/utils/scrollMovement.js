@@ -1,7 +1,9 @@
-import getCoordinates from './getCoordinates';
+import getCoordinates from './getCoordinates'
 
-export default function (target) {
-  const x = (target.left - window.innerWidth) / (target.width + window.innerWidth);
-  const y = (target.top - window.innerHeight) / (target.height + window.innerHeight);
-  return { ...getCoordinates(x, y), target };
+export default function (shape) {
+  console.log('herreee')
+  const { target, } = shape
+  const x = (target.left - window.innerWidth) / (target.width + window.innerWidth)
+  const y = (target.top - window.innerHeight) / (target.height + window.innerHeight)
+  return { ...getCoordinates(x, y), target, }
 }

@@ -53,7 +53,8 @@ export default {
     strengthManager() {
       return this.type === 'depth' || this.type === 'depth_inv'
         ? Math.abs(this.strength)
-        : this.strength;
+        : this.strength
     },
   },
-};
+}
+
