@@ -1,14 +1,25 @@
+import getCoordinates from './getCoordinates'
+
 export default function (cycleData) {
   const {
     referencePosition,
-    elementPosition,
-    spanningRange,
+    shape,
+    event,
     cycles,
-  } = cycleData;
+    strength,
+  } = cycleData
 
-  const radialPosition = ((referencePosition - elementPosition) * (Math.PI * 2)) / spanningRange;
+  const spanningRangeX = event === 'scroll' ? window.innerWidth : shape.width
+  const spanningRangeY = event === 'scroll' ? window.innerHeight : shape.height
 
-  const cycle = spanningRange * Math.sin(radialPosition * cycles);
+  const radialPositionX = ((referencePosition.x - shape.left) * (Math.PI * 2)) / spanningRangeX
+  const radialPositionY = ((referencePosition.y - shape.top) * (Math.PI * 2)) / spanningRangeY
 
-  return cycle / (spanningRange / 2);
+  const cycleX = spanningRangeX * Math.sin(radialPositionX * cycles)
+  const cycleY = spanningRangeY * Math.sin(radialPositionY * cycles)
+
+  return getCoordinates(
+    (cycleX * strength) / (spanningRangeX / 2),
+    (cycleY * strength) / (spanningRangeY / 2)
+  )
 }

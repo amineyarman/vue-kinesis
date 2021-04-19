@@ -1,7 +1,7 @@
 <script>
 import elementMovement from '../utils/elementMovement'
-import clamp from '../utils/clamp'
 import transformMixin from '../mixins/transform_mixin'
+import cyclicMovement from '../utils/cyclicMovement'
 
 export default {
   name: 'KinesisElement',
@@ -30,10 +30,6 @@ export default {
     strength: {
       type: Number,
       default: 10,
-    },
-    audioIndex: {
-      type: Number,
-      default: 50,
     },
     axis: {
       type: String,
@@ -85,37 +81,48 @@ export default {
     transformCalculation() {
       const { context, } = this
 
-      if (!context.isMoving && context.event === 'move') return {}
+      if (
+        !context.shape
+        && !context.isMoving
+        && context.event === 'move'
+      ) return {}
 
-      let movementX; let movementY
+      let movementX
+      let movementY
 
-      let { x, y, } = elementMovement({
-        ...context.movement,
-        originX: this.originX,
-        originY: this.originY,
-        strength: this.strengthManager(),
-        event: context.event,
-      })
-
-      x = clamp(x, this.minX, this.maxX)
-      y = clamp(y, this.minY, this.maxY)
+      const { x, y, } = this.cycle > 0
+        ? elementMovement({
+          ...context.movement,
+          originX: this.originX,
+          originY: this.originY,
+          strength: this.strengthManager(),
+          event: context.event,
+          minX: this.minX,
+          minY: this.minY,
+          maxX: this.maxX,
+          maxY: this.maxY,
+        })
+        : cyclicMovement({
+          referencePosition: context.eventData,
+          shape: context.shape,
+          event: context.event,
+          cycles: this.cycle,
+          strength: this.strengthManager(),
+        })
 
       if (context.event !== 'scroll') {
         movementX = this.axis === 'y' ? 0 : x
         movementY = this.axis === 'x' ? 0 : y
-      }
-      if (context.event === 'scroll') {
+      } else if (context.event === 'scroll') {
         movementX = this.axis === 'x' ? y : 0
         movementY = this.axis === 'y' || !this.axis ? y : 0
+      } else if (this.cycle > 0) {
+        movementX = this.axis === 'x' ? x : 0
+        movementY = this.axis === 'y' ? y : 0
       }
 
       return {
-        transform: this.transformSwitch(
-          this.type,
-          movementX,
-          movementY,
-          this.strength,
-        ),
+        transform: this.transformSwitch(this.type, movementX, movementY, this.strength),
       }
     },
     strengthManager() {
@@ -131,7 +138,7 @@ export default {
       {
         style: { ...context.transform, ...context.transformParameters, },
       },
-      context.$slots.default,
+      context.$slots.default
     )
   },
 }
