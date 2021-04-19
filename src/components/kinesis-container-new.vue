@@ -171,6 +171,22 @@ export default {
         },
       },
       context.$slots.default,
+      [
+        ...context.audio ? createElement('audio', {
+          ref: 'audio',
+          type: 'audio/mpeg',
+          on: {
+            ended() {
+              context.stop()
+            },
+          },
+        },
+        [
+          createElement('source', {
+            src: context.audio,
+          })
+        ]) : undefined,
+      ]
     )
   },
 }
