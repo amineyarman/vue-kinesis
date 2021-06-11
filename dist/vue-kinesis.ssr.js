@@ -66,7 +66,6 @@ function _objectSpread2(target) {
     target: target
   });
 }function scrollMovement (shape) {
-  console.log('herreee');
   var target = shape.target;
   var x = (target.left - window.innerWidth) / (target.width + window.innerWidth);
   var y = (target.top - window.innerHeight) / (target.height + window.innerHeight);

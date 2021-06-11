@@ -27,7 +27,6 @@ function mouseMovement (action) {
 }
 
 function scrollMovement (shape) {
-  console.log('herreee');
   const {
     target
   } = shape;
@@ -228,10 +227,8 @@ var script = {
   },
 
   data() {
-    var _this$$el;
-
     return {
-      shape: (_this$$el = this.$el) === null || _this$$el === void 0 ? void 0 : _this$$el.getBoundingClientRect(),
+      shape: this.$el?.getBoundingClientRect(),
       isMoving: false,
       leftOnce: false,
       movement: {
@@ -248,8 +245,6 @@ var script = {
 
   computed: {
     eventActions() {
-      var _this$shape;
-
       return {
         move: {
           action: mouseMovement,
@@ -258,7 +253,7 @@ var script = {
         },
         scroll: {
           action: scrollMovement,
-          condition: !!((_this$shape = this.shape) !== null && _this$shape !== void 0 && _this$shape.height),
+          condition: !!this.shape?.height,
           type: 'scroll'
         },
         orientation: {
