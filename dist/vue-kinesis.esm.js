@@ -1,6 +1,66 @@
+function getCoordinates (x, y) {
+  return {
+    x,
+    y
+  };
+}
+
+function getCenter (element) {
+  return getCoordinates(element ? element.width / 2 : 0, element ? element.height / 2 : 0);
+}
+
+function mouseMovement (action) {
+  const {
+    target,
+    event
+  } = action;
+  const x = event.clientX;
+  const y = event.clientY;
+  const relativeX = x - target.left;
+  const relativeY = y - target.top;
+  const center = getCenter(target);
+  const mouseMovementX = relativeX / center.x;
+  const mouseMovementY = relativeY / center.y;
+  return { ...getCoordinates(mouseMovementX, mouseMovementY),
+    target
+  };
+}
+
+function scrollMovement (shape) {
+  console.log('herreee');
+  const {
+    target
+  } = shape;
+  const x = (target.left - window.innerWidth) / (target.width + window.innerWidth);
+  const y = (target.top - window.innerHeight) / (target.height + window.innerHeight);
+  return { ...getCoordinates(x, y),
+    target
+  };
+}
+
+function orientationElement (action) {
+  const {
+    event,
+    target
+  } = action;
+  const x = event.gamma / 45;
+  const y = event.beta / 90;
+  return { ...getCoordinates(x, y),
+    target
+  };
+}
+
 function inViewport(element) {
   const isInViewport = element.bottom >= 0 && element.right >= 0 && element.top <= (window.innerHeight || document.documentElement.clientHeight) && element.left <= (window.innerWidth || document.documentElement.clientWidth);
   return isInViewport;
+}
+
+function isTouch() {
+  try {
+    return /Mobi|Android/i.test(navigator.userAgent);
+  } catch (e) {
+    return true;
+  }
 }
 
 function throttle(callback, delay, type) {
@@ -37,44 +97,6 @@ function throttle(callback, delay, type) {
     }
   };
 }
-
-var baseMixin = {
-  props: {
-    active: {
-      type: Boolean,
-      default: true
-    },
-    duration: {
-      type: Number,
-      default: 1000
-    },
-    easing: {
-      type: String,
-      default: 'cubic-bezier(0.23, 1, 0.32, 1)'
-    },
-    tag: {
-      type: String,
-      default: 'div'
-    }
-  }
-};
-
-var perspectiveMixin = {
-  props: {
-    perspective: {
-      type: Number,
-      default: 1000
-    }
-  },
-  computed: {
-    style() {
-      return {
-        perspective: `${this.perspective}px`
-      };
-    }
-
-  }
-};
 
 var audioMixin = {
   props: {
@@ -162,113 +184,36 @@ var audioMixin = {
   }
 };
 
-function isTouch() {
-  try {
-    return /Mobi|Android/i.test(navigator.userAgent);
-  } catch (e) {
-    return true;
-  }
-}
-
-var containerEvents = {
-  props: {
-    event: {
-      type: String,
-      default: 'move' // move, scroll
-
-    }
-  },
-
-  data() {
-    return {
-      eventMap: {
-        orientation: 'deviceorientation',
-        scroll: 'scroll',
-        move: isTouch() ? 'deviceorientation' : null
-      }
-    };
-  },
-
-  methods: {
-    addEvents() {
-      if (this.eventMap[this.event]) {
-        window.addEventListener(this.eventMap[this.event], this.handleMovement, true);
-      }
-    },
-
-    removeEvents() {
-      if (this.eventMap[this.event]) {
-        window.removeEventListener(this.eventMap[this.event], this.handleMovement, true);
-      }
-    }
-
-  },
-  watch: {
-    event(newVal, oldVal) {
-      if (this.eventMap[newVal]) {
-        window.addEventListener(this.eventMap[newVal], this.handleMovement, true);
-      }
-
-      if (this.eventMap[oldVal]) {
-        window.addEventListener(this.eventMap[oldVal], this.handleMovement, true);
-      }
-    }
-
-  }
-};
-
-function getCoordinates (x, y) {
-  return {
-    x,
-    y
-  };
-}
-
-function getCenter (element) {
-  return getCoordinates(element ? element.width / 2 : 0, element ? element.height / 2 : 0);
-}
-
-function mouseMovement (action) {
-  const {
-    target,
-    event
-  } = action;
-  const x = event.clientX;
-  const y = event.clientY;
-  const relativeX = x - target.left;
-  const relativeY = y - target.top;
-  const center = getCenter(target);
-  const mouseMovementX = relativeX / center.x;
-  const mouseMovementY = relativeY / center.y;
-  return { ...getCoordinates(mouseMovementX, mouseMovementY),
-    target
-  };
-}
-
-function orientationElement (action) {
-  const {
-    event,
-    target
-  } = action;
-  const x = event.gamma / 45;
-  const y = event.beta / 90;
-  return { ...getCoordinates(x, y),
-    target
-  };
-}
-
-function scrollMovement (target) {
-  const x = (target.left - window.innerWidth) / (target.width + window.innerWidth);
-  const y = (target.top - window.innerHeight) / (target.height + window.innerHeight);
-  return { ...getCoordinates(x, y),
-    target
-  };
-}
-
 //
 var script = {
   name: 'KinesisContainer',
-  mixins: [baseMixin, perspectiveMixin, audioMixin, containerEvents],
+  mixins: [audioMixin],
+  props: {
+    tag: {
+      type: String,
+      default: 'div'
+    },
+    event: {
+      type: String,
+      default: 'move'
+    },
+    active: {
+      type: Boolean,
+      default: true
+    },
+    duration: {
+      type: Number,
+      default: 1000
+    },
+    easing: {
+      type: String,
+      default: 'cubic-bezier(0.23, 1, 0.32, 1)'
+    },
+    perspective: {
+      type: Number,
+      default: 1000
+    }
+  },
 
   provide() {
     const context = {};
@@ -283,19 +228,53 @@ var script = {
   },
 
   data() {
+    var _this$$el;
+
     return {
+      shape: (_this$$el = this.$el) === null || _this$$el === void 0 ? void 0 : _this$$el.getBoundingClientRect(),
+      isMoving: false,
+      leftOnce: false,
       movement: {
         x: 0,
         y: 0
       },
-      leftOnce: false,
-      isMoving: false,
-      shape: null,
-      eventData: {
-        x: 0,
-        y: 0
+      eventMap: {
+        orientation: 'deviceorientation',
+        scroll: 'scroll',
+        move: isTouch() ? 'deviceorientation' : null
       }
     };
+  },
+
+  computed: {
+    eventActions() {
+      var _this$shape;
+
+      return {
+        move: {
+          action: mouseMovement,
+          condition: this.isMoving && !isTouch(),
+          type: isTouch() ? 'deviceorientation' : null
+        },
+        scroll: {
+          action: scrollMovement,
+          condition: !!((_this$shape = this.shape) !== null && _this$shape !== void 0 && _this$shape.height),
+          type: 'scroll'
+        },
+        orientation: {
+          action: orientationElement,
+          condition: this.event === 'move' && isTouch(),
+          type: 'deviceorientation'
+        }
+      };
+    },
+
+    style() {
+      return {
+        perspective: `${this.perspective}px`
+      };
+    }
+
   },
 
   mounted() {
@@ -307,41 +286,51 @@ var script = {
   },
 
   methods: {
-    // eslint-disable-next-line func-names
-    handleMovement: throttle(function (event) {
-      // if (!this.active) return;
-      if (!this.isMoving && !this.leftOnce) {
-        // fixes the specific case when mouseenter didn't trigger on page refresh
-        this.isMoving = true;
-      }
-
-      this.shape = this.$el.getBoundingClientRect();
-      const isInViewport = inViewport(this.shape);
-
-      if (this.event === 'move' && this.isMoving && !isTouch()) {
-        this.movement = mouseMovement({
-          target: this.shape,
-          event
-        });
-        this.eventData = getCoordinates(event.clientX, event.clientY);
-      } else if ((this.event === 'orientation' || this.event === 'move' && isTouch()) && isInViewport) {
-        this.movement = orientationElement({
-          target: this.shape,
-          event
-        });
-      } else if (this.event === 'scroll' && isInViewport && !!this.shape.height) {
-        this.movement = scrollMovement(this.shape);
-      }
-    }, 100),
-
     handleMovementStart() {
+      if (!this.active) return;
       this.isMoving = true;
     },
 
     handleMovementStop() {
-      // fixes the specific case when mouseenter didn't trigger on page refresh
+      if (!this.active) return; // fixes the specific case when mouseenter didn't trigger on page refresh
+
       this.leftOnce = true;
       this.isMoving = false;
+    },
+
+    // eslint-disable-next-line func-names
+    handleMovement: throttle(function (event) {
+      if (!this.active) return;
+
+      if (!this.isMoving && !this.leftOnce) {
+        // fixes the specific case when mouseenter didn't trigger on page refresh
+        this.handleMovementStart();
+      }
+
+      this.shape = this.$el.getBoundingClientRect();
+      const isInViewport = inViewport(this.shape);
+      const eventCondition = this.eventActions[this.event].condition;
+      const eventAction = this.eventActions[this.event].action;
+
+      if (isInViewport && eventCondition) {
+        this.movement = eventAction({
+          target: this.shape,
+          event
+        });
+        this.eventData = getCoordinates(event.clientX, event.clientY);
+      }
+    }, 100),
+
+    addEvents() {
+      if (this.eventMap[this.event]) {
+        window.addEventListener(this.eventMap[this.event], this.handleMovement, true);
+      }
+    },
+
+    removeEvents() {
+      if (this.eventMap[this.event]) {
+        window.removeEventListener(this.eventMap[this.event], this.handleMovement, true);
+      }
     }
 
   }
@@ -480,70 +469,44 @@ const __vue_component__ = /*#__PURE__*/normalizeComponent({
   staticRenderFns: __vue_staticRenderFns__
 }, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
 
-var motionMixin = {
-  props: {
-    type: {
-      type: String,
-      default: 'translate' // translate, rotate, scale, scaleX, scaleY, depth, depth_inv, custom
+/* eslint-disable no-nested-ternary */
+function clamp (value, min, max) {
+  return max && value > max ? max : min && value < min ? min : value;
+}
 
-    },
-    transformOrigin: {
-      type: String,
-      default: 'center'
-    },
-    originX: {
-      type: Number,
-      default: 50
-    },
-    originY: {
-      type: Number,
-      default: 50
-    },
-    strength: {
-      type: Number,
-      default: 10
-    },
-    audioIndex: {
-      type: Number,
-      default: 50
-    },
-    axis: {
-      type: String,
-      default: null
-    },
-    maxX: {
-      type: Number,
-      default: null
-    },
-    maxY: {
-      type: Number,
-      default: null
-    },
-    minX: {
-      type: Number,
-      default: null
-    },
-    minY: {
-      type: Number,
-      default: null
-    },
-    cycle: {
-      type: Number,
-      default: 0
-    }
-  },
-  methods: {
-    strengthManager() {
-      return this.type === 'depth' || this.type === 'depth_inv' ? Math.abs(this.strength) : this.strength;
-    }
+function elementMovement (action) {
+  const {
+    y,
+    x,
+    target,
+    originX = 50,
+    strength = 10,
+    event = null,
+    minX,
+    minY,
+    maxX,
+    maxY
+  } = action;
+  let {
+    originY = 50
+  } = action;
 
+  if (event === 'scroll') {
+    originY = -originY / 2;
   }
-};
+
+  const movementX = clamp((x - originX / 50) * strength, minX, maxX);
+  const movementY = clamp((y - originY / 50) * strength, minY, maxY);
+  return { ...getCoordinates(movementX, movementY),
+    target
+  };
+}
 
 /* eslint-disable default-case */
 var transformMixin = {
   methods: {
     transformSwitch(type, x, y, s) {
+      type = type === 'scaleX' || type === 'scaleY' ? 'scale' : type;
       let transform;
 
       switch (type) {
@@ -606,65 +569,81 @@ var transformMixin = {
   }
 };
 
-function elementMovement (action) {
-  const {
-    y,
-    x,
-    target,
-    originX = 50,
-    strength = 10,
-    event = null
-  } = action;
-  let {
-    originY = 50
-  } = action;
-
-  if (event === 'scroll') {
-    originY = -originY / 2;
-  }
-
-  const movementX = (x - originX / 50) * strength;
-  const movementY = (y - originY / 50) * strength;
-  return { ...getCoordinates(movementX, movementY),
-    target
-  };
-}
-
-/* eslint-disable no-nested-ternary */
-function clamp (value, min, max) {
-  return max && value > max ? max : min && value < min ? min : value;
-}
-
 function cyclicMovement (cycleData) {
   const {
     referencePosition,
-    elementPosition,
-    spanningRange,
-    cycles
+    shape,
+    event,
+    cycles,
+    strength
   } = cycleData;
-  const radialPosition = (referencePosition - elementPosition) * (Math.PI * 2) / spanningRange;
-  const cycle = spanningRange * Math.sin(radialPosition * cycles);
-  return cycle / (spanningRange / 2);
+  const spanningRangeX = event === 'scroll' ? window.innerWidth : shape.width;
+  const spanningRangeY = event === 'scroll' ? window.innerHeight : shape.height;
+  const radialPositionX = (referencePosition.x - shape.left) * (Math.PI * 2) / spanningRangeX;
+  const radialPositionY = (referencePosition.y - shape.top) * (Math.PI * 2) / spanningRangeY;
+  const cycleX = spanningRangeX * Math.sin(radialPositionX * cycles);
+  const cycleY = spanningRangeY * Math.sin(radialPositionY * cycles);
+  return getCoordinates(cycleX * strength / (spanningRangeX / 2), cycleY * strength / (spanningRangeY / 2));
 }
 
-//
 var script$1 = {
   name: 'KinesisElement',
-  mixins: [motionMixin, transformMixin],
-  inject: ['context'],
+  mixins: [transformMixin],
   props: {
     tag: {
       type: String,
       default: 'div'
+    },
+    type: {
+      type: String,
+      default: 'translate' // translate, rotate, scale, scaleX, scaleY, depth, depth_inv, custom
+
+    },
+    transformOrigin: {
+      type: String,
+      default: 'center'
+    },
+    originX: {
+      type: Number,
+      default: 50
+    },
+    originY: {
+      type: Number,
+      default: 50
+    },
+    strength: {
+      type: Number,
+      default: 10
+    },
+    axis: {
+      type: String,
+      default: null
+    },
+    maxX: {
+      type: Number,
+      default: null
+    },
+    maxY: {
+      type: Number,
+      default: null
+    },
+    minX: {
+      type: Number,
+      default: null
+    },
+    minY: {
+      type: Number,
+      default: null
+    },
+    cycle: {
+      type: Number,
+      default: 0
     }
   },
+  inject: ['context'],
   computed: {
     transform() {
-      return this.transformMovement();
-    },
-
-    getContext() {
-      return this.context;
+      return this.transformCalculation();
     },
 
     transformParameters() {
@@ -685,105 +664,77 @@ var script$1 = {
 
     transitionTimingFunction() {
       return this.context.easing;
-    },
-
-    isTouch() {
-      return isTouch();
     }
 
   },
   methods: {
-    transformMovement() {
+    transformCalculation() {
       const {
         context
       } = this;
-      if (!context.isMoving && context.event === 'move') return {};
+      if (!context.shape || !context.isMoving && context.event === 'move') return {};
       let movementX;
       let movementY;
-      const eventTrigger = context.event;
-      const strength = this.strengthManager();
+      const {
+        x,
+        y
+      } = this.cycle < 1 ? elementMovement({ ...context.movement,
+        originX: this.originX,
+        originY: this.originY,
+        strength: this.strengthManager(),
+        event: context.event,
+        minX: this.minX,
+        minY: this.minY,
+        maxX: this.maxX,
+        maxY: this.maxY
+      }) : cyclicMovement({
+        referencePosition: context.event === 'scroll' ? {
+          x: 0,
+          y: 0
+        } : context.eventData,
+        shape: context.shape,
+        event: context.event,
+        cycles: this.cycle,
+        strength: this.strengthManager()
+      });
 
-      if (this.cycle <= 0) {
-        const {
-          x,
-          y
-        } = elementMovement({ ...context.movement,
-          originX: this.originX,
-          originY: this.originY,
-          strength
-        });
-        const isScroll = eventTrigger === 'scroll';
-
-        if (!isScroll) {
-          movementX = this.axis === 'y' ? 0 : clamp(x, this.minX, this.maxX);
-          movementY = this.axis === 'x' ? 0 : clamp(y, this.minY, this.maxY);
-        }
-
-        if (isScroll) {
-          const scrollMovement = elementMovement({
-            x: context.movement.x,
-            y: context.movement.y,
-            originX: this.originX,
-            originY: this.originY,
-            strength,
-            event: context.event
-          }).y;
-          movementX = this.axis === 'x' ? scrollMovement : 0;
-          movementY = this.axis === 'y' || !this.axis ? scrollMovement : 0;
-        }
+      if (context.event !== 'scroll') {
+        movementX = this.axis === 'y' ? 0 : x;
+        movementY = this.axis === 'x' ? 0 : y;
+      } else if (context.event === 'scroll') {
+        movementX = this.axis === 'x' ? y : 0;
+        movementY = this.axis === 'y' || !this.axis ? y : 0;
       } else if (this.cycle > 0) {
-        const {
-          shape,
-          eventData
-        } = context;
-
-        if (shape) {
-          const cycleX = this.axis === 'x' ? cyclicMovement({
-            referencePosition: eventTrigger === 'scroll' ? 0 : eventData.x,
-            elementPosition: shape.left,
-            spanningRange: eventTrigger === 'scroll' ? window.innerWidth : shape.width,
-            cycles: this.cycle
-          }) : 0;
-          const cycleY = this.axis === 'y' || !this.axis ? cyclicMovement({
-            referencePosition: eventTrigger === 'scroll' ? 0 : eventData.y,
-            elementPosition: shape.top,
-            spanningRange: eventTrigger === 'scroll' ? window.innerHeight : shape.height,
-            cycles: this.cycle
-          }) : 0;
-          movementX = cycleX * strength;
-          movementY = cycleY * strength;
-        }
+        movementX = this.axis === 'x' ? x : 0;
+        movementY = this.axis === 'y' ? y : 0;
       }
 
-      let transformType = this.type;
-      transformType = transformType === 'scaleX' || transformType === 'scaleY' ? 'scale' : transformType;
-      const transform = this.transformSwitch(transformType, movementX, movementY, this.strength);
       return {
-        transform
+        transform: this.transformSwitch(this.type, movementX, movementY, this.strength)
       };
+    },
+
+    strengthManager() {
+      return this.type === 'depth' || this.type === 'depth_inv' ? Math.abs(this.strength) : this.strength;
     }
 
+  },
+
+  render(createElement) {
+    const context = this;
+    return createElement(context.tag, {
+      style: { ...context.transform,
+        ...context.transformParameters
+      }
+    }, context.$slots.default);
   }
+
 };
 
 /* script */
 const __vue_script__$1 = script$1;
 /* template */
 
-var __vue_render__$1 = function () {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c(_vm.tag, {
-    tag: "component",
-    style: Object.assign({}, _vm.transform, _vm.transformParameters)
-  }, [_vm._t("default")], 2);
-};
-
-var __vue_staticRenderFns__$1 = [];
 /* style */
 
 const __vue_inject_styles__$1 = undefined;
@@ -795,17 +746,74 @@ const __vue_scope_id__$1 = undefined;
 const __vue_module_identifier__$1 = undefined;
 /* functional template */
 
-const __vue_is_functional_template__$1 = false;
+const __vue_is_functional_template__$1 = undefined;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-const __vue_component__$1 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$1,
-  staticRenderFns: __vue_staticRenderFns__$1
-}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);
+const __vue_component__$1 = /*#__PURE__*/normalizeComponent({}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);
+
+var motionMixin = {
+  props: {
+    type: {
+      type: String,
+      default: 'translate' // translate, rotate, scale, scaleX, scaleY, depth, depth_inv, custom
+
+    },
+    transformOrigin: {
+      type: String,
+      default: 'center'
+    },
+    originX: {
+      type: Number,
+      default: 50
+    },
+    originY: {
+      type: Number,
+      default: 50
+    },
+    strength: {
+      type: Number,
+      default: 10
+    },
+    audioIndex: {
+      type: Number,
+      default: 50
+    },
+    axis: {
+      type: String,
+      default: null
+    },
+    maxX: {
+      type: Number,
+      default: null
+    },
+    maxY: {
+      type: Number,
+      default: null
+    },
+    minX: {
+      type: Number,
+      default: null
+    },
+    minY: {
+      type: Number,
+      default: null
+    },
+    cycle: {
+      type: Number,
+      default: 0
+    }
+  },
+  methods: {
+    strengthManager() {
+      return this.type === 'depth' || this.type === 'depth_inv' ? Math.abs(this.strength) : this.strength;
+    }
+
+  }
+};
 
 //
 var script$2 = {
@@ -853,7 +861,7 @@ var script$2 = {
       const {
         audioData
       } = this.context;
-      if (!this.context.audioData) return;
+      if (!audioData) return;
       const transformType = this.type;
       const {
         strength
@@ -892,7 +900,7 @@ var script$2 = {
 const __vue_script__$2 = script$2;
 /* template */
 
-var __vue_render__$2 = function () {
+var __vue_render__$1 = function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -905,7 +913,7 @@ var __vue_render__$2 = function () {
   }, [_vm._t("default")], 2);
 };
 
-var __vue_staticRenderFns__$2 = [];
+var __vue_staticRenderFns__$1 = [];
 /* style */
 
 const __vue_inject_styles__$2 = undefined;
@@ -925,9 +933,47 @@ const __vue_is_functional_template__$2 = false;
 /* style inject shadow dom */
 
 const __vue_component__$2 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$2,
-  staticRenderFns: __vue_staticRenderFns__$2
+  render: __vue_render__$1,
+  staticRenderFns: __vue_staticRenderFns__$1
 }, __vue_inject_styles__$2, __vue_script__$2, __vue_scope_id__$2, __vue_is_functional_template__$2, __vue_module_identifier__$2, false, undefined, undefined, undefined);
+
+var baseMixin = {
+  props: {
+    active: {
+      type: Boolean,
+      default: true
+    },
+    duration: {
+      type: Number,
+      default: 1000
+    },
+    easing: {
+      type: String,
+      default: 'cubic-bezier(0.23, 1, 0.32, 1)'
+    },
+    tag: {
+      type: String,
+      default: 'div'
+    }
+  }
+};
+
+var perspectiveMixin = {
+  props: {
+    perspective: {
+      type: Number,
+      default: 1000
+    }
+  },
+  computed: {
+    style() {
+      return {
+        perspective: `${this.perspective}px`
+      };
+    }
+
+  }
+};
 
 //
 var script$3 = {
@@ -938,18 +984,6 @@ var script$3 = {
     return {
       transform: {}
     };
-  },
-
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll, {
-      passive: true
-    });
-  },
-
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll, {
-      passive: true
-    });
   },
 
   computed: {
@@ -967,6 +1001,19 @@ var script$3 = {
     }
 
   },
+
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll, {
+      passive: true
+    });
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll, {
+      passive: true
+    });
+  },
+
   methods: {
     getCycleMovement(xPos, yPos, width, height, shape) {
       const x = (xPos - shape.left) * (Math.PI * 2) / width;
@@ -1043,7 +1090,7 @@ var script$3 = {
 const __vue_script__$3 = script$3;
 /* template */
 
-var __vue_render__$3 = function () {
+var __vue_render__$2 = function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -1056,7 +1103,7 @@ var __vue_render__$3 = function () {
   }, [_vm._t("default")], 2);
 };
 
-var __vue_staticRenderFns__$3 = [];
+var __vue_staticRenderFns__$2 = [];
 /* style */
 
 const __vue_inject_styles__$3 = undefined;
@@ -1076,8 +1123,8 @@ const __vue_is_functional_template__$3 = false;
 /* style inject shadow dom */
 
 const __vue_component__$3 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$3,
-  staticRenderFns: __vue_staticRenderFns__$3
+  render: __vue_render__$2,
+  staticRenderFns: __vue_staticRenderFns__$2
 }, __vue_inject_styles__$3, __vue_script__$3, __vue_scope_id__$3, __vue_is_functional_template__$3, __vue_module_identifier__$3, false, undefined, undefined, undefined);
 
 //
@@ -1167,14 +1214,6 @@ var script$4 = {
     };
   },
 
-  mounted() {
-    window.addEventListener('scroll', this.handleMovement);
-  },
-
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleMovement);
-  },
-
   computed: {
     style() {
       return {
@@ -1197,6 +1236,15 @@ var script$4 = {
     }
 
   },
+
+  mounted() {
+    window.addEventListener('scroll', this.handleMovement);
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleMovement);
+  },
+
   methods: {
     getCoordinates(x, y) {
       const shape = this.$el.getBoundingClientRect();
@@ -1257,7 +1305,7 @@ var script$4 = {
 const __vue_script__$4 = script$4;
 /* template */
 
-var __vue_render__$4 = function () {
+var __vue_render__$3 = function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -1270,7 +1318,7 @@ var __vue_render__$4 = function () {
   }, [_vm._t("default")], 2);
 };
 
-var __vue_staticRenderFns__$4 = [];
+var __vue_staticRenderFns__$3 = [];
 /* style */
 
 const __vue_inject_styles__$4 = undefined;
@@ -1290,8 +1338,8 @@ const __vue_is_functional_template__$4 = false;
 /* style inject shadow dom */
 
 const __vue_component__$4 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$4,
-  staticRenderFns: __vue_staticRenderFns__$4
+  render: __vue_render__$3,
+  staticRenderFns: __vue_staticRenderFns__$3
 }, __vue_inject_styles__$4, __vue_script__$4, __vue_scope_id__$4, __vue_is_functional_template__$4, __vue_module_identifier__$4, false, undefined, undefined, undefined);
 
 const Plugin = {
