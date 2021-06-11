@@ -48,7 +48,7 @@ export default {
     transformAudio() {
       const { audioData, } = this.context
 
-      if (!this.context.audioData) return
+      if (!audioData) return
 
       const transformType = this.type
 
