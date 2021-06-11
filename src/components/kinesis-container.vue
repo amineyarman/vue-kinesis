@@ -75,7 +75,7 @@ export default {
   methods: {
     // eslint-disable-next-line func-names
     handleMovement: throttle(function (event) {
-      // if (!this.active) return;
+      if (!this.active) return;
 
       if (!this.isMoving && !this.leftOnce) {
         // fixes the specific case when mouseenter didn't trigger on page refresh
@@ -109,9 +109,11 @@ export default {
       }
     }, 100),
     handleMovementStart() {
+      if (!this.active) return;
       this.isMoving = true;
     },
     handleMovementStop() {
+      if (!this.active) return;
       // fixes the specific case when mouseenter didn't trigger on page refresh
       this.leftOnce = true;
       this.isMoving = false;
