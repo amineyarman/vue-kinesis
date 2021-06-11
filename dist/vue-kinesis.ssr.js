@@ -501,7 +501,8 @@ function _nonIterableRest() {
   methods: {
     // eslint-disable-next-line func-names
     handleMovement: throttle(function (event) {
-      // if (!this.active) return;
+      if (!this.active) return;
+
       if (!this.isMoving && !this.leftOnce) {
         // fixes the specific case when mouseenter didn't trigger on page refresh
         this.isMoving = true;
@@ -526,10 +527,12 @@ function _nonIterableRest() {
       }
     }, 100),
     handleMovementStart: function handleMovementStart() {
+      if (!this.active) return;
       this.isMoving = true;
     },
     handleMovementStop: function handleMovementStop() {
-      // fixes the specific case when mouseenter didn't trigger on page refresh
+      if (!this.active) return; // fixes the specific case when mouseenter didn't trigger on page refresh
+
       this.leftOnce = true;
       this.isMoving = false;
     }

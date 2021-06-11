@@ -463,7 +463,8 @@ var script$1 = {
   methods: {
     // eslint-disable-next-line func-names
     handleMovement: throttle(function (event) {
-      // if (!this.active) return;
+      if (!this.active) return;
+
       if (!this.isMoving && !this.leftOnce) {
         // fixes the specific case when mouseenter didn't trigger on page refresh
         this.isMoving = true;
@@ -489,11 +490,13 @@ var script$1 = {
     }, 100),
 
     handleMovementStart() {
+      if (!this.active) return;
       this.isMoving = true;
     },
 
     handleMovementStop() {
-      // fixes the specific case when mouseenter didn't trigger on page refresh
+      if (!this.active) return; // fixes the specific case when mouseenter didn't trigger on page refresh
+
       this.leftOnce = true;
       this.isMoving = false;
     }
