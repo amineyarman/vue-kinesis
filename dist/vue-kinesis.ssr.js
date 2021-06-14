@@ -1,26 +1,15 @@
-'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function ownKeys(object, enumerableOnly) {
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
 
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
+
+    if (enumerableOnly) {
+      symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+    }
+
     keys.push.apply(keys, symbols);
   }
 
@@ -45,6 +34,21 @@ function _objectSpread2(target) {
   }
 
   return target;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
 }function getCoordinates (x, y) {
   return {
     x: x,
@@ -197,7 +201,7 @@ function _objectSpread2(target) {
     }
   }
 };//
-var script = {
+var script$4 = {
   name: 'KinesisContainer',
   mixins: [audioMixin],
   props: {
@@ -413,10 +417,10 @@ var script = {
     }
     return script;
 }/* script */
-var __vue_script__ = script;
+var __vue_script__$4 = script$4;
 /* template */
 
-var __vue_render__ = function __vue_render__() {
+var __vue_render__$3 = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -446,29 +450,29 @@ var __vue_render__ = function __vue_render__() {
   })]) : _vm._e()], 2);
 };
 
-var __vue_staticRenderFns__ = [];
+var __vue_staticRenderFns__$3 = [];
 /* style */
 
-var __vue_inject_styles__ = undefined;
+var __vue_inject_styles__$4 = undefined;
 /* scoped */
 
-var __vue_scope_id__ = undefined;
+var __vue_scope_id__$4 = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-5b4afee6";
+var __vue_module_identifier__$4 = "data-v-5b4afee6";
 /* functional template */
 
-var __vue_is_functional_template__ = false;
+var __vue_is_functional_template__$4 = false;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-var __vue_component__ = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__,
-  staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);/* eslint-disable no-nested-ternary */
+var __vue_component__$4 = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__$3,
+  staticRenderFns: __vue_staticRenderFns__$3
+}, __vue_inject_styles__$4, __vue_script__$4, __vue_scope_id__$4, __vue_is_functional_template__$4, __vue_module_identifier__$4, false, undefined, undefined, undefined);/* eslint-disable no-nested-ternary */
 function clamp (value, min, max) {
   return max && value > max ? max : min && value < min ? min : value;
 }function elementMovement (action) {
@@ -566,7 +570,7 @@ var transformMixin = {
   var cycleX = spanningRangeX * Math.sin(radialPositionX * cycles);
   var cycleY = spanningRangeY * Math.sin(radialPositionY * cycles);
   return getCoordinates(cycleX * strength / (spanningRangeX / 2), cycleY * strength / (spanningRangeY / 2));
-}var script$1 = {
+}var script$3 = {
   name: 'KinesisElement',
   mixins: [transformMixin],
   props: {
@@ -696,28 +700,28 @@ var transformMixin = {
     }, context.$slots.default);
   }
 };/* script */
-var __vue_script__$1 = script$1;
+var __vue_script__$3 = script$3;
 /* template */
 
 /* style */
 
-var __vue_inject_styles__$1 = undefined;
+var __vue_inject_styles__$3 = undefined;
 /* scoped */
 
-var __vue_scope_id__$1 = undefined;
+var __vue_scope_id__$3 = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$1 = "data-v-2ae8e75a";
+var __vue_module_identifier__$3 = "data-v-2ae8e75a";
 /* functional template */
 
-var __vue_is_functional_template__$1 = undefined;
+var __vue_is_functional_template__$3 = undefined;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-var __vue_component__$1 = /*#__PURE__*/normalizeComponent({}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);var motionMixin = {
+var __vue_component__$3 = /*#__PURE__*/normalizeComponent({}, __vue_inject_styles__$3, __vue_script__$3, __vue_scope_id__$3, __vue_is_functional_template__$3, __vue_module_identifier__$3, false, undefined, undefined, undefined);var motionMixin = {
   props: {
     type: {
       type: String,
@@ -846,7 +850,7 @@ var script$2 = {
 var __vue_script__$2 = script$2;
 /* template */
 
-var __vue_render__$1 = function __vue_render__() {
+var __vue_render__$2 = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -859,7 +863,7 @@ var __vue_render__$1 = function __vue_render__() {
   }, [_vm._t("default")], 2);
 };
 
-var __vue_staticRenderFns__$1 = [];
+var __vue_staticRenderFns__$2 = [];
 /* style */
 
 var __vue_inject_styles__$2 = undefined;
@@ -879,8 +883,8 @@ var __vue_is_functional_template__$2 = false;
 /* style inject shadow dom */
 
 var __vue_component__$2 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$1,
-  staticRenderFns: __vue_staticRenderFns__$1
+  render: __vue_render__$2,
+  staticRenderFns: __vue_staticRenderFns__$2
 }, __vue_inject_styles__$2, __vue_script__$2, __vue_scope_id__$2, __vue_is_functional_template__$2, __vue_module_identifier__$2, false, undefined, undefined, undefined);var baseMixin = {
   props: {
     active: {
@@ -915,7 +919,7 @@ var __vue_component__$2 = /*#__PURE__*/normalizeComponent({
     }
   }
 };//
-var script$3 = {
+var script$1 = {
   name: 'KinesisScroll',
   mixins: [baseMixin, perspectiveMixin, motionMixin, transformMixin],
   data: function data() {
@@ -1014,10 +1018,10 @@ var script$3 = {
     }
   }
 };/* script */
-var __vue_script__$3 = script$3;
+var __vue_script__$1 = script$1;
 /* template */
 
-var __vue_render__$2 = function __vue_render__() {
+var __vue_render__$1 = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -1030,30 +1034,30 @@ var __vue_render__$2 = function __vue_render__() {
   }, [_vm._t("default")], 2);
 };
 
-var __vue_staticRenderFns__$2 = [];
+var __vue_staticRenderFns__$1 = [];
 /* style */
 
-var __vue_inject_styles__$3 = undefined;
+var __vue_inject_styles__$1 = undefined;
 /* scoped */
 
-var __vue_scope_id__$3 = undefined;
+var __vue_scope_id__$1 = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$3 = "data-v-0296bb3c";
+var __vue_module_identifier__$1 = "data-v-0296bb3c";
 /* functional template */
 
-var __vue_is_functional_template__$3 = false;
+var __vue_is_functional_template__$1 = false;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-var __vue_component__$3 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$2,
-  staticRenderFns: __vue_staticRenderFns__$2
-}, __vue_inject_styles__$3, __vue_script__$3, __vue_scope_id__$3, __vue_is_functional_template__$3, __vue_module_identifier__$3, false, undefined, undefined, undefined);//
-var script$4 = {
+var __vue_component__$1 = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__$1,
+  staticRenderFns: __vue_staticRenderFns__$1
+}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);//
+var script = {
   name: 'KinesisDistance',
   props: {
     tag: {
@@ -1206,10 +1210,10 @@ var script$4 = {
     }
   }
 };/* script */
-var __vue_script__$4 = script$4;
+var __vue_script__ = script;
 /* template */
 
-var __vue_render__$3 = function __vue_render__() {
+var __vue_render__ = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -1222,48 +1226,48 @@ var __vue_render__$3 = function __vue_render__() {
   }, [_vm._t("default")], 2);
 };
 
-var __vue_staticRenderFns__$3 = [];
+var __vue_staticRenderFns__ = [];
 /* style */
 
-var __vue_inject_styles__$4 = undefined;
+var __vue_inject_styles__ = undefined;
 /* scoped */
 
-var __vue_scope_id__$4 = undefined;
+var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$4 = "data-v-97bf617a";
+var __vue_module_identifier__ = "data-v-97bf617a";
 /* functional template */
 
-var __vue_is_functional_template__$4 = false;
+var __vue_is_functional_template__ = false;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-var __vue_component__$4 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$3,
-  staticRenderFns: __vue_staticRenderFns__$3
-}, __vue_inject_styles__$4, __vue_script__$4, __vue_scope_id__$4, __vue_is_functional_template__$4, __vue_module_identifier__$4, false, undefined, undefined, undefined);var Plugin = {
+var __vue_component__ = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__,
+  staticRenderFns: __vue_staticRenderFns__
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);var Plugin$1 = {
   install: function install(vue) {
     vue.component(__vue_component__$2.name, __vue_component__$2);
-    vue.component(__vue_component__.name, __vue_component__);
     vue.component(__vue_component__$4.name, __vue_component__$4);
-    vue.component(__vue_component__$1.name, __vue_component__$1);
+    vue.component(__vue_component__.name, __vue_component__);
     vue.component(__vue_component__$3.name, __vue_component__$3);
+    vue.component(__vue_component__$1.name, __vue_component__$1);
   }
 };
-var GlobalVue = null;
+var GlobalVue$1 = null;
 
 if (typeof window !== 'undefined') {
-  GlobalVue = window.vue;
+  GlobalVue$1 = window.vue;
 } else if (typeof global !== 'undefined') {
-  GlobalVue = global.vue;
+  GlobalVue$1 = global.vue;
 }
 
-if (GlobalVue) {
-  GlobalVue.use(Plugin);
-}var components=/*#__PURE__*/Object.freeze({__proto__:null,'default': Plugin,KinesisAudio: __vue_component__$2,KinesisContainer: __vue_component__,KinesisDistance: __vue_component__$4,KinesisElement: __vue_component__$1,KinesisScroll: __vue_component__$3});/* eslint-disable */
+if (GlobalVue$1) {
+  GlobalVue$1.use(Plugin$1);
+}var components=/*#__PURE__*/Object.freeze({__proto__:null,'default': Plugin$1,KinesisAudio: __vue_component__$2,KinesisContainer: __vue_component__$4,KinesisDistance: __vue_component__,KinesisElement: __vue_component__$3,KinesisScroll: __vue_component__$1});/* eslint-disable */
 
 var install = function install(vue) {
   if (install.installed) {
@@ -1276,24 +1280,24 @@ var install = function install(vue) {
     vue.use(components[name]);
   }
 
-  vue.component('kinesis-container', __vue_component__);
-  vue.component('kinesis-element', __vue_component__$1);
+  vue.component('kinesis-container', __vue_component__$4);
+  vue.component('kinesis-element', __vue_component__$3);
   vue.component('kinesis-audio', __vue_component__$2);
-  vue.component('kinesis-scroll', __vue_component__$3);
-  vue.component('kinesis-distance', __vue_component__$4);
+  vue.component('kinesis-scroll', __vue_component__$1);
+  vue.component('kinesis-distance', __vue_component__);
 };
 
-var Plugin$1 = {
+var Plugin = {
   install: install
 };
-var GlobalVue$1 = null;
+var GlobalVue = null;
 
 if (typeof window !== 'undefined') {
-  GlobalVue$1 = window.vue;
+  GlobalVue = window.vue;
 } else if (typeof global !== 'undefined') {
-  GlobalVue$1 = global.vue;
+  GlobalVue = global.vue;
 }
 
-if (GlobalVue$1) {
-  GlobalVue$1.use(Plugin$1);
-}exports.KinesisAudio=__vue_component__$2;exports.KinesisContainer=__vue_component__;exports.KinesisDistance=__vue_component__$4;exports.KinesisElement=__vue_component__$1;exports.KinesisScroll=__vue_component__$3;exports.default=Plugin$1;
+if (GlobalVue) {
+  GlobalVue.use(Plugin);
+}exports.KinesisAudio=__vue_component__$2;exports.KinesisContainer=__vue_component__$4;exports.KinesisDistance=__vue_component__;exports.KinesisElement=__vue_component__$3;exports.KinesisScroll=__vue_component__$1;exports.default=Plugin;

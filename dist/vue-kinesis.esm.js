@@ -184,7 +184,7 @@ var audioMixin = {
 };
 
 //
-var script = {
+var script$4 = {
   name: 'KinesisContainer',
   mixins: [audioMixin],
   props: {
@@ -227,8 +227,10 @@ var script = {
   },
 
   data() {
+    var _this$$el;
+
     return {
-      shape: this.$el?.getBoundingClientRect(),
+      shape: (_this$$el = this.$el) === null || _this$$el === void 0 ? void 0 : _this$$el.getBoundingClientRect(),
       isMoving: false,
       leftOnce: false,
       movement: {
@@ -245,6 +247,8 @@ var script = {
 
   computed: {
     eventActions() {
+      var _this$shape;
+
       return {
         move: {
           action: mouseMovement,
@@ -253,7 +257,7 @@ var script = {
         },
         scroll: {
           action: scrollMovement,
-          condition: !!this.shape?.height,
+          condition: !!((_this$shape = this.shape) !== null && _this$shape !== void 0 && _this$shape.height),
           type: 'scroll'
         },
         orientation: {
@@ -407,10 +411,10 @@ function normalizeComponent(template, style, script, scopeId, isFunctionalTempla
 }
 
 /* script */
-const __vue_script__ = script;
+const __vue_script__$4 = script$4;
 /* template */
 
-var __vue_render__ = function () {
+var __vue_render__$3 = function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -440,29 +444,29 @@ var __vue_render__ = function () {
   })]) : _vm._e()], 2);
 };
 
-var __vue_staticRenderFns__ = [];
+var __vue_staticRenderFns__$3 = [];
 /* style */
 
-const __vue_inject_styles__ = undefined;
+const __vue_inject_styles__$4 = undefined;
 /* scoped */
 
-const __vue_scope_id__ = undefined;
+const __vue_scope_id__$4 = undefined;
 /* module identifier */
 
-const __vue_module_identifier__ = undefined;
+const __vue_module_identifier__$4 = undefined;
 /* functional template */
 
-const __vue_is_functional_template__ = false;
+const __vue_is_functional_template__$4 = false;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-const __vue_component__ = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__,
-  staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
+const __vue_component__$4 = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__$3,
+  staticRenderFns: __vue_staticRenderFns__$3
+}, __vue_inject_styles__$4, __vue_script__$4, __vue_scope_id__$4, __vue_is_functional_template__$4, __vue_module_identifier__$4, false, undefined, undefined, undefined);
 
 /* eslint-disable no-nested-ternary */
 function clamp (value, min, max) {
@@ -581,7 +585,7 @@ function cyclicMovement (cycleData) {
   return getCoordinates(cycleX * strength / (spanningRangeX / 2), cycleY * strength / (spanningRangeY / 2));
 }
 
-var script$1 = {
+var script$3 = {
   name: 'KinesisElement',
   mixins: [transformMixin],
   props: {
@@ -727,28 +731,28 @@ var script$1 = {
 };
 
 /* script */
-const __vue_script__$1 = script$1;
+const __vue_script__$3 = script$3;
 /* template */
 
 /* style */
 
-const __vue_inject_styles__$1 = undefined;
+const __vue_inject_styles__$3 = undefined;
 /* scoped */
 
-const __vue_scope_id__$1 = undefined;
+const __vue_scope_id__$3 = undefined;
 /* module identifier */
 
-const __vue_module_identifier__$1 = undefined;
+const __vue_module_identifier__$3 = undefined;
 /* functional template */
 
-const __vue_is_functional_template__$1 = undefined;
+const __vue_is_functional_template__$3 = undefined;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-const __vue_component__$1 = /*#__PURE__*/normalizeComponent({}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);
+const __vue_component__$3 = /*#__PURE__*/normalizeComponent({}, __vue_inject_styles__$3, __vue_script__$3, __vue_scope_id__$3, __vue_is_functional_template__$3, __vue_module_identifier__$3, false, undefined, undefined, undefined);
 
 var motionMixin = {
   props: {
@@ -895,7 +899,7 @@ var script$2 = {
 const __vue_script__$2 = script$2;
 /* template */
 
-var __vue_render__$1 = function () {
+var __vue_render__$2 = function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -908,7 +912,7 @@ var __vue_render__$1 = function () {
   }, [_vm._t("default")], 2);
 };
 
-var __vue_staticRenderFns__$1 = [];
+var __vue_staticRenderFns__$2 = [];
 /* style */
 
 const __vue_inject_styles__$2 = undefined;
@@ -928,8 +932,8 @@ const __vue_is_functional_template__$2 = false;
 /* style inject shadow dom */
 
 const __vue_component__$2 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$1,
-  staticRenderFns: __vue_staticRenderFns__$1
+  render: __vue_render__$2,
+  staticRenderFns: __vue_staticRenderFns__$2
 }, __vue_inject_styles__$2, __vue_script__$2, __vue_scope_id__$2, __vue_is_functional_template__$2, __vue_module_identifier__$2, false, undefined, undefined, undefined);
 
 var baseMixin = {
@@ -971,7 +975,7 @@ var perspectiveMixin = {
 };
 
 //
-var script$3 = {
+var script$1 = {
   name: 'KinesisScroll',
   mixins: [baseMixin, perspectiveMixin, motionMixin, transformMixin],
 
@@ -1082,10 +1086,10 @@ var script$3 = {
 };
 
 /* script */
-const __vue_script__$3 = script$3;
+const __vue_script__$1 = script$1;
 /* template */
 
-var __vue_render__$2 = function () {
+var __vue_render__$1 = function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -1098,32 +1102,32 @@ var __vue_render__$2 = function () {
   }, [_vm._t("default")], 2);
 };
 
-var __vue_staticRenderFns__$2 = [];
+var __vue_staticRenderFns__$1 = [];
 /* style */
 
-const __vue_inject_styles__$3 = undefined;
+const __vue_inject_styles__$1 = undefined;
 /* scoped */
 
-const __vue_scope_id__$3 = undefined;
+const __vue_scope_id__$1 = undefined;
 /* module identifier */
 
-const __vue_module_identifier__$3 = undefined;
+const __vue_module_identifier__$1 = undefined;
 /* functional template */
 
-const __vue_is_functional_template__$3 = false;
+const __vue_is_functional_template__$1 = false;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-const __vue_component__$3 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$2,
-  staticRenderFns: __vue_staticRenderFns__$2
-}, __vue_inject_styles__$3, __vue_script__$3, __vue_scope_id__$3, __vue_is_functional_template__$3, __vue_module_identifier__$3, false, undefined, undefined, undefined);
+const __vue_component__$1 = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__$1,
+  staticRenderFns: __vue_staticRenderFns__$1
+}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);
 
 //
-var script$4 = {
+var script = {
   name: 'KinesisDistance',
   props: {
     tag: {
@@ -1297,10 +1301,10 @@ var script$4 = {
 };
 
 /* script */
-const __vue_script__$4 = script$4;
+const __vue_script__ = script;
 /* template */
 
-var __vue_render__$3 = function () {
+var __vue_render__ = function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -1313,60 +1317,60 @@ var __vue_render__$3 = function () {
   }, [_vm._t("default")], 2);
 };
 
-var __vue_staticRenderFns__$3 = [];
+var __vue_staticRenderFns__ = [];
 /* style */
 
-const __vue_inject_styles__$4 = undefined;
+const __vue_inject_styles__ = undefined;
 /* scoped */
 
-const __vue_scope_id__$4 = undefined;
+const __vue_scope_id__ = undefined;
 /* module identifier */
 
-const __vue_module_identifier__$4 = undefined;
+const __vue_module_identifier__ = undefined;
 /* functional template */
 
-const __vue_is_functional_template__$4 = false;
+const __vue_is_functional_template__ = false;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-const __vue_component__$4 = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__$3,
-  staticRenderFns: __vue_staticRenderFns__$3
-}, __vue_inject_styles__$4, __vue_script__$4, __vue_scope_id__$4, __vue_is_functional_template__$4, __vue_module_identifier__$4, false, undefined, undefined, undefined);
+const __vue_component__ = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__,
+  staticRenderFns: __vue_staticRenderFns__
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
 
-const Plugin = {
+const Plugin$1 = {
   install(vue) {
     vue.component(__vue_component__$2.name, __vue_component__$2);
-    vue.component(__vue_component__.name, __vue_component__);
     vue.component(__vue_component__$4.name, __vue_component__$4);
-    vue.component(__vue_component__$1.name, __vue_component__$1);
+    vue.component(__vue_component__.name, __vue_component__);
     vue.component(__vue_component__$3.name, __vue_component__$3);
+    vue.component(__vue_component__$1.name, __vue_component__$1);
   }
 
 };
-let GlobalVue = null;
+let GlobalVue$1 = null;
 
 if (typeof window !== 'undefined') {
-  GlobalVue = window.vue;
+  GlobalVue$1 = window.vue;
 } else if (typeof global !== 'undefined') {
-  GlobalVue = global.vue;
+  GlobalVue$1 = global.vue;
 }
 
-if (GlobalVue) {
-  GlobalVue.use(Plugin);
+if (GlobalVue$1) {
+  GlobalVue$1.use(Plugin$1);
 }
 
 var components = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  'default': Plugin,
+  'default': Plugin$1,
   KinesisAudio: __vue_component__$2,
-  KinesisContainer: __vue_component__,
-  KinesisDistance: __vue_component__$4,
-  KinesisElement: __vue_component__$1,
-  KinesisScroll: __vue_component__$3
+  KinesisContainer: __vue_component__$4,
+  KinesisDistance: __vue_component__,
+  KinesisElement: __vue_component__$3,
+  KinesisScroll: __vue_component__$1
 });
 
 /* eslint-disable */
@@ -1382,27 +1386,27 @@ const install = function (vue) {
     vue.use(components[name]);
   }
 
-  vue.component('kinesis-container', __vue_component__);
-  vue.component('kinesis-element', __vue_component__$1);
+  vue.component('kinesis-container', __vue_component__$4);
+  vue.component('kinesis-element', __vue_component__$3);
   vue.component('kinesis-audio', __vue_component__$2);
-  vue.component('kinesis-scroll', __vue_component__$3);
-  vue.component('kinesis-distance', __vue_component__$4);
+  vue.component('kinesis-scroll', __vue_component__$1);
+  vue.component('kinesis-distance', __vue_component__);
 };
 
-const Plugin$1 = {
+const Plugin = {
   install
 };
-let GlobalVue$1 = null;
+let GlobalVue = null;
 
 if (typeof window !== 'undefined') {
-  GlobalVue$1 = window.vue;
+  GlobalVue = window.vue;
 } else if (typeof global !== 'undefined') {
-  GlobalVue$1 = global.vue;
+  GlobalVue = global.vue;
 }
 
-if (GlobalVue$1) {
-  GlobalVue$1.use(Plugin$1);
+if (GlobalVue) {
+  GlobalVue.use(Plugin);
 }
 
-export default Plugin$1;
-export { __vue_component__$2 as KinesisAudio, __vue_component__ as KinesisContainer, __vue_component__$4 as KinesisDistance, __vue_component__$1 as KinesisElement, __vue_component__$3 as KinesisScroll };
+export default Plugin;
+export { __vue_component__$2 as KinesisAudio, __vue_component__$4 as KinesisContainer, __vue_component__ as KinesisDistance, __vue_component__$3 as KinesisElement, __vue_component__$1 as KinesisScroll };
