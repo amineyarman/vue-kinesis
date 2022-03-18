@@ -1,3 +1,5 @@
+# The project is on standby for now. I'm focusing on another project and will come back to this one when I'm done. Do not hesitate if you want to help with the issues or show your support in one way or another 🤝
+
 # vue-kinesis
 
 [![npm](https://img.shields.io/npm/v/vue-kinesis.svg)](https://img.shields.io/npm/v/vue-kinesis.svg) 
