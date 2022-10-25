@@ -12,6 +12,17 @@ Easy to use Vue.js components for creating interactive animations
 
 [Kinesis Demo](https://aminerman.com/kinesis/)
 
+## Tutorials 
+
+- [LogRocket - Top 5 Vue Animation Libraries](https://blog.logrocket.com/top-5-vue-animation-libraries-compared/)
+- [LogRocket - Interactive Vue Animations with Kinesis](https://blog.logrocket.com/interactive-vue-animations-with-kinesis/)
+- [Leonardo Gruppelli - Kinesis Animation for Nuxt](https://medium.com/@leonardo.gruppelli/kinesis-awesome-animations-for-your-vue-nuxt-applications-8c16ae701e92)
+- [Coliss - 便利なのが登場！Vue.jsでインタラクティブなアニメーションを簡単に実装できる軽量コンポーネント -Kinesis](https://coliss.com/articles/build-websites/operation/javascript/interactive-animations-with-vue-js-kinesis.html)
+- [Kabanoki - コイツ動くぞ？！的なアニメーションが付けられる「vue-kinesis」](https://www.kabanoki.net/5792/)
+- [Mebee - Nuxt.js vue-kinesisを使用してアニメーションをかける](https://mebee.info/2020/05/18/post-6592/)
+- ... Feel free to open a PR if you want to suggest a tutorial link 🙏
+
+
 # Vue3 - Installation 
 
 ```
