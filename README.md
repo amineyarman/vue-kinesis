@@ -1,4 +1,4 @@
-# The project is on standby for now. I'm focusing on another project and will come back to this one when I'm done. Do not hesitate if you want to help with the issues or show your support in one way or another 🤝
+# The project has been on standby for a while now. But good news! I'm working on a brand new version, more robust, with better documentation and more features!
 
 # vue-kinesis
 
