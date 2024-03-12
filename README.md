@@ -1,4 +1,4 @@
-# The project has been on standby for a while now. But good news! I'm working on a brand new version, more robust, with better documentation and more features!
+# March 2024: The project has been on standby for a while now. But good news! I'm working on a brand new version, more robust, with better documentation and more features!
 
 # vue-kinesis
 
