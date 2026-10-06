@@ -1,10 +1,8 @@
-# October 2024: A full TS version is now available [KinesisJS](https://kinesisjs.com). You can use it in your vue projects if you need any of the new features. It works with Vue but a dedicated Vue version is in the works.
-# March 2024: The project has been on standby for a while now. But good news! I'm working on a brand new version, more robust, with better documentation and more features!
-What's in preparation:
-- Rewriting everything in TS
-- New interactions
-- A detailed documentation
-- A vanilla TS version
+> **Kinesis 2.0 is out: [kinesisjs.com](https://kinesisjs.com).** The same idea, now written as CSS
+> properties (`.card { --k-tilt: 8deg; }`), with no framework required. It also has a Vue plugin
+> (`v-kinesis`). Install it with `npm i @amineyarman/kinesis`.
+>
+> vue-kinesis stays available below for existing projects.
 
 # vue-kinesis
 
